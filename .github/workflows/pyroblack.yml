@@ -1,0 +1,39 @@
+name: pyroblack
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 6 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Setup Python Version
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Run script
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TG_SESSION: ${{ secrets.TG_SESSION }}
+          FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+        run: |
+          echo "Beginning Pyrogram test"
+          mkdir -p out
+          pip install --no-cache-dir --force-reinstall --upgrade pyroblack https://github.com/eyMarv/tgcrypto-pyroblack/archive/6c634e2.zip > /dev/null 2>&1
+          P=$(python src/pyrogram/main.py)
+          pip uninstall -y pyroblack TgCrypto-pyroblack > /dev/null 2>&1
+          echo "${P}" > out/pyroblack.json
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="pyroblack" ./.github/_commit.sh
