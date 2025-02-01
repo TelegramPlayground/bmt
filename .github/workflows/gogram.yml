@@ -1,0 +1,38 @@
+name: gogram
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 0 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+
+      - name: Run script
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TG_SESSION: ${{ secrets.TG_SESSION }}
+          FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+        run: |
+          echo "Beginning GoGram test"
+          mkdir -p out
+          cd src/gogram
+          go mod tidy && go get github.com/amarnathcjd/gogram@master && go run .
+          cd ../../../
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="gogram" ./.github/_commit.sh
