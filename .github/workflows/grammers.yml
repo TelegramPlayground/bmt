@@ -1,0 +1,34 @@
+name: grammers
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 1 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Run script
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TG_SESSION: ${{ secrets.TG_SESSION }}
+          FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+        run: |
+          echo "Beginning Grammers test"
+          mkdir -p out
+          cargo build --release --manifest-path src/grammers/Cargo.toml > /dev/null 2>&1
+          T=$(./src/grammers/target/release/g1)
+          cargo clean --manifest-path src/grammers/Cargo.toml > /dev/null 2>&1
+          echo "${T}" > out/grammers.json
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="gramme.rs" ./.github/_commit.sh
