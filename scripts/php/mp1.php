@@ -1,4 +1,10 @@
 <?php declare(strict_types=1);
+
+use danog\MadelineProto\API;
+use danog\MadelineProto\EventHandler\Message;
+use danog\MadelineProto\LocalFile;
+use Webmozart\Assert\Assert;
+
 /**
  * Example bot. https://t.me/TrollVoiceBot?start=1266
  *
@@ -32,6 +38,9 @@ if (file_exists(__DIR__ . "/vendor/autoload.php")) {
     include "madeline.php";
 }
 
+Assert::true(extension_loaded('uv'), "The uv extension is required for maximum performance");
+Assert::true(opcache_get_status(false)['jit']['enabled'], "JIT is required for maximum performance");
+
 /**
  * required environment variables
  */
@@ -48,7 +57,7 @@ $messageLink = getenv("TG_MESSAGE_LINK");
 $settings = new \danog\MadelineProto\Settings;
 $settings->getLogger()->setLevel(\danog\MadelineProto\Logger::LEVEL_ULTRA_VERBOSE);
 
-$settings->getConnection()->setMaxMediaSocketCount(1000);
+$settings->getConnection()->setMaxMediaSocketCount(50);
 $settings->getFiles()->setUploadParallelChunks(50);
 $settings->getFiles()->setDownloadParallelChunks(50);
 // IMPORTANT: for security reasons, upload by URL will still be allowed
@@ -61,6 +70,7 @@ $settings->getAppInfo()
 $api = new \danog\MadelineProto\API('session.madeline', $settings);
 $api->botLogin($TG_BOT_TOKEN);
 $api->start();
+$api->fullGetSelf();
 
 function getMessageDetails($messageLink) {
     // Extract chat ID and message ID from the link
@@ -74,37 +84,18 @@ function getMessageDetails($messageLink) {
     return [$chatId, $messageId];
 }
 
-function downloadFile($api, $chatId, $messageId) {
-    $messages = $api->channels->getMessages([
+function downloadFile(API $api, string|int $chatId, int $messageId): array {
+    $message = $api->wrapMessage($api->channels->getMessages([
         'channel' => $chatId,
         'id' => [$messageId]
-    ]);
-    $message = $messages['messages'][0];
-
-    if (!isset($message['media']['document'])) {
-        throw new Exception("No document found in the message.");
+    ])['messages'][0]);
+    if (!$message instanceof Message || $message->media === null) {
+        throw new AssertionError("No media found in request");
     }
 
-    $file = $message['media'];
     $startTime = microtime(true);
-    $file = new \danog\MadelineProto\FileCallback(
-        $file,
-        static function ($progress, $speed, $time) use ($chatId, $messageId): void {
-            static $prev = 0;
-            $now = time();
-            if ($now - $prev < 10 && $progress < 100) {
-                return;
-            }
-
-            $prev = $now;
-            try {
-                echo "Upload progress: $progress%\nSpeed: $speed mbps\nTime elapsed since start: $time";
-            } catch (RPCErrorException $e) {
-            }
-        },
-    );
+    $file = $message->media->downloadToDir('/tmp');
     $endTime = microtime(true);
-
     $downloadTime = $endTime - $startTime;
     echo "Download completed in $downloadTime seconds.\n";
 
@@ -113,23 +104,21 @@ function downloadFile($api, $chatId, $messageId) {
         "start_time" => $startTime,
         "end_time" => $endTime,
         "time_taken" => $downloadTime,
+        'file_name' => $message->media->fileName,
+        'file_size' => $message->media->size,
     ];
 }
 
-function uploadFile($api, $chatId, $filePath) {
+function uploadFile(API $api, string|int $chatId, string $filePath) {
     $startTime = microtime(true);
-    $api->messages->sendMedia([
-        'peer' => $chatId,
-        'media' => [
-            '_' => 'inputMediaUploadedDocument',
-            'file' => $filePath,
-            'attributes' => [
-                ['_' => 'documentAttributeFilename', 'file_name' => "MadeLineProto.zip"]
-            ]
-        ],
-        'message' => 'Powered by @MadelineProto!'
-    ]);
+    $api->sendDocument(
+        peer: $chatId,
+        file: new LocalFile($filePath),
+        fileName: "MadelineProto.zip",
+        caption: 'Powered by @MadelineProto!'
+    );
     $endTime = microtime(true);
+    unlink($filePath);
     $uploadTime = $endTime - $startTime;
     echo "Upload completed in $uploadTime seconds.\n";
     return [
@@ -145,12 +134,18 @@ $filePath = $fileMI["file"];
 unset($fileMI["file"]);
 $uploadMI = uploadFile($api, $chatId, $filePath);
 
+// Throw away first run, used to prime caches & set up connections
+
+$fileMI = downloadFile($api, $chatId, $messageId);
+$filePath = $fileMI["file"];
+unset($fileMI["file"]);
+$uploadMI = uploadFile($api, $chatId, $filePath);
+
 $j = [
     "version" => \danog\MadelineProto\API::RELEASE,
     "layer" => $settings->getSchema()->getLayer(),
-    "file_name" => "DC1.zip",
-    // TODO: IDekNow, how to get these values from actual media object.?
-    "file_size" => 2097152000,
+    "file_name" => $fileMI['file_name'],
+    "file_size" => $fileMI['file_size'],
     "download" => $fileMI,
     "upload" => $uploadMI
 ];

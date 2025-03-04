@@ -11,12 +11,6 @@ jobs:
       - name: Checkout repository contents
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          extensions: none, dom, iconv, fileinfo, mbstring, intl-70.1, xml
-
       - name: Run script
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
@@ -28,10 +22,7 @@ jobs:
         run: |
           echo "Beginning MadeLineProto test"
           mkdir -p outputs
-          cd scripts/php/
-          php mp1.php
-          rm -rf madeline.* session.madeline
-          cd ../../
+          docker run -v $PWD:/app --rm -it hub.madelineproto.xyz/danog/madelineproto:latest php /app/scripts/php/mp1.php
 
       - name: Commit and push changes
         run: |
