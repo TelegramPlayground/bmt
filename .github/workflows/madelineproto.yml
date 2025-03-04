@@ -1,0 +1,42 @@
+name: madelineproto
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 4 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: hub.madelineproto.xyz/danog/madelineproto:latest
+          options: >-
+            -v ${{ github.workspace }}:/app
+            -e APP_ID
+            -e API_HASH
+            -e BOT_TOKEN
+            -e TG_SESSION
+            -e FLOOD_WAIT_SLEEP_TIME
+            -e MESSAGE_LINK
+          run: |
+            echo "Beginning MadeLineProto test"
+            mkdir -p out
+            php /app/src/madelineproto/main.php
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TG_SESSION: ${{ secrets.TG_SESSION }}
+          FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="MadelineProto" ./.github/_commit.sh
