@@ -140,16 +140,23 @@ async function fetchClientData() {
     const app = document.getElementById("app");
     const loadingScreen = document.querySelector(".loading-screen");
 
-    try {
-        const results = await Promise.all(
-            libs.map(lib =>
-                fetch(`https://raw.githubusercontent.com/TelegramPlayGround/bmt/master/outputs/${lib.name}.json`)
-                    .then(res => res.json())
-                    .then(data => ({ lib, data }))
-                    .catch(error => console.log(error))
-            )
-        );
+    const invalidResults = await Promise.all(
+        libs.map(async lib => {
+            try {
+                const res = await fetch(`https://raw.githubusercontent.com/TelegramPlayGround/bmt/master/outputs/${lib.name}.json`);
+                const data = await res.json();
+                return { lib, data, error: null };
+            }
+            catch (error) {
+                console.error(`Error processing ${lib.name}:`, error);
+                return { lib, data: null, error: error.message };
+            }
+        })
+    );
 
+    const results = invalidResults.filter(result => result.data !== null);
+
+    if (results.length !== 0) {
         const sortedResults = results
             .map(result => ({
                 ...result,
@@ -164,15 +171,15 @@ async function fetchClientData() {
         setTimeout(() => {
             loadingScreen.classList.add("hidden");
         }, 500);
-    } catch (error) {
+    }
+    else {
         app.innerHTML = `
-<div class="error" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--error);">
-<i class="ti ti-alert-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-<p>Failed to load benchmark data. Please try again later.</p>
-</div>
-`;
+            <div class="error" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--error);">
+            <i class="ti ti-alert-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>Failed to load benchmark data. Please try again later.</p>
+            </div>
+            `;
         loadingScreen.classList.add("hidden");
-        console.error("Error fetching client data:", error);
     }
 }
 
