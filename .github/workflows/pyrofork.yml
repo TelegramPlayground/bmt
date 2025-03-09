@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "Beginning Pyrogram test"
           mkdir -p outputs
-          pip install --force-reinstall https://github.com/Mayuri-Chan/pyrofork/archive/ecf4699.zip https://github.com/Mayuri-Chan/tgcrypto-pyrofork/archive/f765c80.zip > /dev/null 2>&1
+          pip install --force-reinstall https://github.com/Mayuri-Chan/pyrofork/archive/8074557.zip https://github.com/Mayuri-Chan/tgcrypto-pyrofork/archive/f765c80.zip > /dev/null 2>&1
           P=$(python scripts/python/p2.py)
           pip uninstall -y pyrofork TgCrypto-pyrofork > /dev/null 2>&1
           echo "${P}" > outputs/pyrofork.json

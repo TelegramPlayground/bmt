@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "Beginning Telethon test"
           mkdir -p outputs
-          pip install --force-reinstall https://github.com/lonamiwebs/telethon/archive/045df41.zip cryptg==0.5.0.post0 > /dev/null 2>&1
+          pip install --force-reinstall Telethon==1.39.0 cryptg==0.5.0.post0 > /dev/null 2>&1
           T=$(python scripts/python/t1.py)
           pip uninstall -y telethon cryptg > /dev/null 2>&1
           echo "${T}" > outputs/telethon.json

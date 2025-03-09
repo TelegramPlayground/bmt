@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "Beginning Pyrogram test"
           mkdir -p outputs
-          pip install --force-reinstall https://github.com/KurimuzonAkuma/pyrogram/archive/65f43dd.zip TgCrypto==1.2.5 > /dev/null 2>&1
+          pip install --force-reinstall kurigram TgCrypto==1.2.5 > /dev/null 2>&1
           P=$(python scripts/python/p2.py)
           pip uninstall -y kurigram tgcrypto > /dev/null 2>&1
           echo "${P}" > outputs/kurigram.json
