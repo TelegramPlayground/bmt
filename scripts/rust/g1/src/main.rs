@@ -95,13 +95,13 @@ async fn main() {
   "download": {{
     "start_time": {download_start_time},
     "end_time": {download_end_time},
-    "time_taken": {download_time_taken},
+    "time_taken": {download_time_taken}
   }},
   "upload": {{
     "start_time": {upload_start_time},
     "end_time": {upload_end_time},
-    "time_taken": {upload_time_taken},
-  }},
+    "time_taken": {upload_time_taken}
+  }}
 }}"#,
     );
 }
