@@ -1,4 +1,4 @@
-name: TeleThon (t.me/tgLibs) Benchmark Testing Tool
+name: Telethon (t.me/tgLibs) Benchmark Testing Tool
 
 on:
   workflow_dispatch: {}
