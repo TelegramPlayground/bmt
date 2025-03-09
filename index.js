@@ -39,6 +39,10 @@ const libs = [
         name: "madelineproto",
         repo: "https://github.com/danog/MadelineProto",
     },
+    {
+        name: "grammers",
+        repo: "https://github.com/Lonami/grammers",
+    },
 ];
 
 /**
