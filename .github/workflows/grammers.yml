@@ -1,0 +1,38 @@
+name: Grammers (t.me/tgLibs) Benchmark Testing Tool
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Run script
+        env:
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_SESSION: ${{ secrets.TG_SESSION }}
+          TG_FLOOD_SLEEP_THRESHOLD: ${{ secrets.TG_FLOOD_SLEEP_THRESHOLD }}
+          TG_MESSAGE_LINK: ${{ secrets.TG_MESSAGE_LINK }}
+        run: |
+          echo "Beginning Grammers test"
+          mkdir -p outputs
+          cargo build --release --manifest-path scripts/rust/g1/Cargo.toml > /dev/null 2>&1
+          T=$(./scripts/rust/g1/target/release/g1)
+          cargo clean --manifest-path scripts/rust/g1/Cargo.toml > /dev/null 2>&1
+          echo "${T}" > outputs/grammers.json
+
+      - name: Commit and push changes
+        run: |
+          git config pull.rebase true
+          git config user.email "41898282@users.noreply.github.com"
+          git config user.name "GitHub Actions <Grammers>"
+          git add outputs/ -A
+          git commit -m "update Grammers bench"
+          git pull origin master
+          git push origin master
