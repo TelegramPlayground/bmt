@@ -146,6 +146,7 @@ async function fetchClientData() {
                 fetch(`https://raw.githubusercontent.com/TelegramPlayGround/bmt/master/outputs/${lib.name}.json`)
                     .then(res => res.json())
                     .then(data => ({ lib, data }))
+                    .catch(error => console.log(error))
             )
         );
 
