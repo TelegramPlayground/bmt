@@ -64,7 +64,7 @@ t5 = datetime.now()
 d["upload"] = {
     "start_time": t4.timestamp(),
     "end_time": t5.timestamp(),
-    "time_taken": (t3 - t2).seconds
+    "time_taken": (t5 - t4).seconds
 }
 os.remove(filename)
 
