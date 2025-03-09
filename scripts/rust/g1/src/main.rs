@@ -89,7 +89,7 @@ async fn main() {
 
     println!(
         r#"{{
-  "version": {version},
+  "version": "{version}",
   "layer": {LAYER},
   "file_size": {file_size},
   "download": {{
