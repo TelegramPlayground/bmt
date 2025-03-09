@@ -40,14 +40,10 @@ async fn main() {
     app.bot_sign_in(&tg_bot_token).await.unwrap();
 
     let mut link = tg_message_link.split("/").skip(3);
-    let chat_id = link.next().unwrap().parse::<i64>().unwrap();
+    let chat_id = link.next().unwrap();
     let s_message_id = link.next().unwrap().parse::<i32>().unwrap();
 
-    let chat = types::PackedChat {
-        ty: session::PackedType::Megagroup,
-        id: chat_id,
-        access_hash: Some(0),
-    };
+    let chat = app.resolve_username(chat_id).await.unwrap().unwrap().pack();
 
     let _t1 = now();
     let message = app
