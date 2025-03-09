@@ -2,6 +2,8 @@ name: PyTDbot (t.me/tgLibs) Benchmark Testing Tool
 
 on:
   workflow_dispatch: {}
+  schedule:
+    - cron: '3 4 * * 2'
 
 jobs:
   build:
@@ -27,7 +29,7 @@ jobs:
         run: |
           echo "Beginning Pytdbot test"
           mkdir -p outputs
-          pip install --force-reinstall Pytdbot==0.9.1 tdjson==1.8.46 > /dev/null 2>&1
+          pip install --force-reinstall Pytdbot tdjson > /dev/null 2>&1
           python scripts/python/t3.py
           pip uninstall -y Pytdbot tdjson > /dev/null 2>&1
 
