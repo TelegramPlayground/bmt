@@ -51,7 +51,7 @@ const libs = [
         name: "pytdbot",
         repo: "https://github.com/pytdbot/client",
         display: "PyTDBot",
-        language: "python",
+        language: "cpp",
     },
     {
         name: "madelineproto",
