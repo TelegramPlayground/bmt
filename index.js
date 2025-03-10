@@ -2,46 +2,68 @@ const libs = [
     {
         name: "telethon",
         repo: "https://github.com/LonamiWebs/Telethon",
+        display: "Telethon",
+        language: "python",
     },
     {
         name: "pyrogram",
         repo: "https://github.com/pyrogram/pyrogram",
+        display: "Pyrogram",
+        language: "python",
     },
     {
         name: "gogram",
         repo: "https://github.com/amarnathcjd/gogram",
+        display: "GoGram",
+        language: "golang",
     },
     {
         name: "hydrogram",
         repo: "https://github.com/hydrogram/hydrogram",
+        display: "Hydrogram",
+        language: "python",
     },
     {
         name: "pyrotgfork",
         repo: "https://github.com/TelegramPlayGround/pyrogram",
+        display: "PyroTGFork",
+        language: "python",
     },
     {
         name: "kurigram",
         repo: "https://github.com/KurimuzonAkuma/pyrogram",
+        display: "kurigram",
+        language: "python",
     },
     {
         name: "pyrofork",
         repo: "https://github.com/Mayuri-Chan/pyrofork",
+        display: "pyrofork",
+        language: "python",
     },
     {
         name: "pyroblack",
         repo: "https://github.com/eyMarv/pyroblack/",
+        display: "pyroblack",
+        language: "python",
     },
     {
         name: "pytdbot",
         repo: "https://github.com/pytdbot/client",
+        display: "PyTDBot",
+        language: "python",
     },
     {
         name: "madelineproto",
         repo: "https://github.com/danog/MadelineProto",
+        display: "MadeLineProto",
+        language: "php",
     },
     {
         name: "grammers",
         repo: "https://github.com/Lonami/grammers",
+        display: "grammers",
+        language: "rust",
     },
 ];
 
@@ -105,10 +127,10 @@ function createClientCard(data, lib, index, position) {
 <div class="card" style="animation-delay: ${index * 0.1}s">
 ${positionBadge}
 <div class="card-header">
-<i class="ti ti-brand-telegram"></i>
+<i class="ti ti-brand-${lib.language}"></i>
 <div class="client-info">
   <div class="client-title">
-    <h3>${lib.name}</h3>
+    <h3>${lib.display}</h3>
     <a href="${lib.repo}" target="_blank" class="github-link" title="View on GitHub">
       <i class="ti ti-brand-github"></i>
     </a>
