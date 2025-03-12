@@ -3,7 +3,7 @@ module main
 go 1.23.2
 
 require (
-	github.com/amarnathcjd/gogram v1.5.10-0.20250310222731-3ad98cee270a
+	github.com/amarnathcjd/gogram v1.5.10-0.20250311180220-840ccd0f973a
 	github.com/joho/godotenv v1.5.1
 )
 
