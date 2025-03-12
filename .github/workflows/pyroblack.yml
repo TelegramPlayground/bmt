@@ -29,7 +29,7 @@ jobs:
         run: |
           echo "Beginning Pyrogram test"
           mkdir -p outputs
-          pip install --force-reinstall https://github.com/eyMarv/pyroblack/archive/7f56de0.zip https://github.com/eyMarv/tgcrypto-pyroblack/archive/6c634e2.zip > /dev/null 2>&1
+          pip install --force-reinstall pyroblack https://github.com/eyMarv/tgcrypto-pyroblack/archive/6c634e2.zip > /dev/null 2>&1
           P=$(python scripts/python/p2.py)
           pip uninstall -y pyroblack TgCrypto-pyroblack > /dev/null 2>&1
           echo "${P}" > outputs/pyroblack.json

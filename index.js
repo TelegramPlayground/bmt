@@ -65,6 +65,12 @@ const libs = [
         display: "grammers",
         language: "rust",
     },
+    {
+        name: "pyrogrammod",
+        repo: "https://github.com/PyrogramMod/PyrogramMod",
+        display: "PyrogramMod",
+        language: "python",
+    },
 ];
 
 /**
