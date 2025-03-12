@@ -107,8 +107,12 @@ func main() {
 		}
 	})
 
-	client.UploadFile(downloaded, &tg.UploadOptions{
+	client.SendMedia(message.Chat, downloaded, &tg.MediaOptions{
 		ProgressManager: prog,
+		ForceDocument:   true,
+		ReplyID:         message.ID,
+		Caption:         "gogram",
+		Attributes:      message.Document().Attributes,
 	})
 
 	avgSpeed = float64(fileSize) / float64(time.Now().Unix()-startTime)
