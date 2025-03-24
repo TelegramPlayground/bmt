@@ -1,0 +1,44 @@
+name: mtcute
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 13 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 23.x
+
+      - name: Run script
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+        run: |
+          echo "Beginning MTKruto test"
+          mkdir -p out
+          cd src/mtcute/
+          rm -rf node_modules client.session
+          pnpm up --latest
+          node main.ts
+          rm -rf node_modules client.session
+          cd ../../
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="mtcute" ./.github/_commit.sh
