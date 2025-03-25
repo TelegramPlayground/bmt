@@ -1,13 +1,13 @@
 import { Client, errors, setLogVerbosity, Api } from "jsr:@mtkruto/mtkruto";
 
-const API_ID = +(Deno.env.get("API_ID") || "");
+const APP_ID = +(Deno.env.get("APP_ID") || "");
 const API_HASH = Deno.env.get("API_HASH") || "";
 const BOT_TOKEN = Deno.env.get("BOT_TOKEN") || "";
-const FLOOD_WAIT_THRESHOLD = +(Deno.env.get("FLOOD_WAIT_THRESHOLD") || "") || 10;
+const SLEEP_THRESHOLD = +(Deno.env.get("FLOOD_WAIT_SLEEP_TIME") || "") || 10;
 const MESSAGE_LINK = Deno.env.get("MESSAGE_LINK") || "";
 
 setLogVerbosity(5);
-const client = new Client({ apiId: API_ID, apiHash: API_HASH });
+const client = new Client({ apiId: APP_ID, apiHash: API_HASH });
 
 const d: {
   version: string;
@@ -26,7 +26,7 @@ const d: {
 } = { version: "N / A", layer: Api.LAYER, file_size: 0, download: { start_time: 0, end_time: 0, time_taken: 0 }, upload: { start_time: 0, end_time: 0, time_taken: 0 } };
 
 client.invoke.use(async ({ error }, next) => {
-  if (error instanceof errors.FloodWait && error.seconds <= FLOOD_WAIT_THRESHOLD) {
+  if (error instanceof errors.FloodWait && error.seconds <= SLEEP_THRESHOLD) {
     await new Promise((r) => setTimeout(r, 1_000 * error.seconds));
     return true;
   } else {

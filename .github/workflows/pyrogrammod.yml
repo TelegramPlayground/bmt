@@ -20,11 +20,11 @@ jobs:
 
       - name: Run script
         env:
-          API_ID: ${{ secrets.API_ID }}
+          APP_ID: ${{ secrets.APP_ID }}
           API_HASH: ${{ secrets.API_HASH }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
-          FLOOD_WAIT_THRESHOLD: ${{ secrets.FLOOD_WAIT_THRESHOLD }}
+          FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning Pyrogram test"

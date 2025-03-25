@@ -45,7 +45,7 @@ Assert::true(opcache_get_status(false)['jit']['enabled'], "JIT is required for m
  * required environment variables
  */
 
-$API_ID = (int) getenv("API_ID");
+$APP_ID = (int) getenv("APP_ID");
 $API_HASH = getenv("API_HASH");
 $BOT_TOKEN = getenv("BOT_TOKEN");
 $messageLink = getenv("MESSAGE_LINK");
@@ -64,7 +64,7 @@ $settings->getFiles()->setDownloadParallelChunks(50);
 $settings->getFiles()->setAllowAutomaticUpload(true);
 
 $settings->getAppInfo()
-    ->setApiId($API_ID)
+    ->setApiId($APP_ID)
     ->setApiHash($API_HASH);
 
 $api = new \danog\MadelineProto\API('session.madeline', $settings);

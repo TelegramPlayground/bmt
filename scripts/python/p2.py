@@ -17,10 +17,10 @@ logging.basicConfig(
 )
 
 
-API_ID = int(os.environ.get("API_ID", "6"))
+APP_ID = int(os.environ.get("APP_ID", "6"))
 API_HASH = os.environ.get("API_HASH", "")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-FLOOD_WAIT_THRESHOLD = int(os.environ.get("FLOOD_WAIT_THRESHOLD", "10"))
+SLEEP_THRESHOLD = int(os.environ.get("FLOOD_WAIT_SLEEP_TIME", "10"))
 TG_SESSION = os.environ.get("TG_SESSION", "")
 MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
 
@@ -31,9 +31,9 @@ async def main():
         name="my_account",
         session_string=TG_SESSION,
         in_memory=True,
-        api_id=API_ID,
+        api_id=APP_ID,
         api_hash=API_HASH,
-        sleep_threshold=FLOOD_WAIT_THRESHOLD,
+        sleep_threshold=SLEEP_THRESHOLD,
         no_updates=True,
         bot_token=BOT_TOKEN
     ) as app:

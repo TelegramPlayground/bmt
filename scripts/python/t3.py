@@ -17,7 +17,7 @@ logging.basicConfig(
 )
 
 
-API_ID = int(os.environ.get("API_ID", "6"))
+APP_ID = int(os.environ.get("APP_ID", "6"))
 API_HASH = os.environ.get("API_HASH", "")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
@@ -30,7 +30,7 @@ async def main():
     f = "LevLam"
     client = Client(
         token=BOT_TOKEN,
-        api_id=API_ID,
+        api_id=APP_ID,
         api_hash=API_HASH,
         database_encryption_key="cucumber",
         files_directory=f,

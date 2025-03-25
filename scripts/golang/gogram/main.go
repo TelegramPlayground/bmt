@@ -36,7 +36,7 @@ func main() {
 
 	dotenv.Load()
 	var (
-		APP_ID       = os.Getenv("API_ID")
+		APP_ID       = os.Getenv("APP_ID")
 		APP_HASH     = os.Getenv("API_HASH")
 		BOT_TOKEN    = os.Getenv("BOT_TOKEN")
 		MESSAGE_LINK = os.Getenv("MESSAGE_LINK")

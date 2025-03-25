@@ -19,22 +19,22 @@ jobs:
           image: hub.madelineproto.xyz/danog/madelineproto:latest
           options: >-
             -v ${{ github.workspace }}:/app
-            -e API_ID
+            -e APP_ID
             -e API_HASH
             -e BOT_TOKEN
             -e TG_SESSION
-            -e FLOOD_WAIT_THRESHOLD
+            -e FLOOD_WAIT_SLEEP_TIME
             -e MESSAGE_LINK
           run: |
             echo "Beginning MadeLineProto test"
             mkdir -p outputs
             php /app/scripts/php/madelineproto/mp1.php
         env:
-          API_ID: ${{ secrets.API_ID }}
+          APP_ID: ${{ secrets.APP_ID }}
           API_HASH: ${{ secrets.API_HASH }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
-          FLOOD_WAIT_THRESHOLD: ${{ secrets.FLOOD_WAIT_THRESHOLD }}
+          FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
 
       - name: Commit and push changes

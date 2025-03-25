@@ -18,10 +18,10 @@ logging.basicConfig(
 )
 
 
-API_ID = int(os.environ.get("API_ID", "6"))
+APP_ID = int(os.environ.get("APP_ID", "6"))
 API_HASH = os.environ.get("API_HASH", "")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-FLOOD_WAIT_THRESHOLD = int(os.environ.get("FLOOD_WAIT_THRESHOLD", "10"))
+FLOOD_SLEEP_THRESHOLD = int(os.environ.get("FLOOD_WAIT_SLEEP_TIME", "10"))
 MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
 
 
@@ -29,9 +29,9 @@ d = {}
 
 app = TelegramClient(
     session=MemorySession(),
-    api_id=API_ID,
+    api_id=APP_ID,
     api_hash=API_HASH,
-    flood_sleep_threshold=FLOOD_WAIT_THRESHOLD,
+    flood_sleep_threshold=FLOOD_SLEEP_THRESHOLD,
     receive_updates=False
 )
 d["version"] = __version__
