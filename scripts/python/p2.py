@@ -17,9 +17,9 @@ logging.basicConfig(
 )
 
 
-TG_API_ID = int(os.environ.get("TG_API_ID", "6"))
-TG_API_HASH = os.environ.get("TG_API_HASH", "")
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
+API_ID = int(os.environ.get("API_ID", "6"))
+API_HASH = os.environ.get("API_HASH", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 TG_FLOOD_SLEEP_THRESHOLD = int(os.environ.get("TG_FLOOD_SLEEP_THRESHOLD", "10"))
 TG_SESSION = os.environ.get("TG_SESSION", "")
 TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
@@ -31,11 +31,11 @@ async def main():
         name="my_account",
         session_string=TG_SESSION,
         in_memory=True,
-        api_id=TG_API_ID,
-        api_hash=TG_API_HASH,
+        api_id=API_ID,
+        api_hash=API_HASH,
         sleep_threshold=TG_FLOOD_SLEEP_THRESHOLD,
         no_updates=True,
-        bot_token=TG_BOT_TOKEN
+        bot_token=BOT_TOKEN
     ) as app:
         app.upload_boost = True
 

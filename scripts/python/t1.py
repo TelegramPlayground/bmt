@@ -18,9 +18,9 @@ logging.basicConfig(
 )
 
 
-TG_API_ID = int(os.environ.get("TG_API_ID", "6"))
-TG_API_HASH = os.environ.get("TG_API_HASH", "")
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
+API_ID = int(os.environ.get("API_ID", "6"))
+API_HASH = os.environ.get("API_HASH", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 TG_FLOOD_SLEEP_THRESHOLD = int(os.environ.get("TG_FLOOD_SLEEP_THRESHOLD", "10"))
 TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
 
@@ -29,15 +29,15 @@ d = {}
 
 app = TelegramClient(
     session=MemorySession(),
-    api_id=TG_API_ID,
-    api_hash=TG_API_HASH,
+    api_id=API_ID,
+    api_hash=API_HASH,
     flood_sleep_threshold=TG_FLOOD_SLEEP_THRESHOLD,
     receive_updates=False
 )
 d["version"] = __version__
 d["layer"] = LAYER
 app.connect()
-app.sign_in(bot_token=TG_BOT_TOKEN)
+app.sign_in(bot_token=BOT_TOKEN)
 
 _, _, _, chat_id, s_message_id = TG_MESSAGE_LINK.split("/")
 

@@ -1,13 +1,13 @@
 import { Client, errors, setLogVerbosity, Api } from "jsr:@mtkruto/mtkruto";
 
-const TG_API_ID = +(Deno.env.get("TG_API_ID") || "");
-const TG_API_HASH = Deno.env.get("TG_API_HASH") || "";
-const TG_BOT_TOKEN = Deno.env.get("TG_BOT_TOKEN") || "";
+const API_ID = +(Deno.env.get("API_ID") || "");
+const API_HASH = Deno.env.get("API_HASH") || "";
+const BOT_TOKEN = Deno.env.get("BOT_TOKEN") || "";
 const TG_FLOOD_SLEEP_THRESHOLD = +(Deno.env.get("TG_FLOOD_SLEEP_THRESHOLD") || "") || 10;
 const TG_MESSAGE_LINK = Deno.env.get("TG_MESSAGE_LINK") || "";
 
 setLogVerbosity(5);
-const client = new Client({ apiId: TG_API_ID, apiHash: TG_API_HASH });
+const client = new Client({ apiId: API_ID, apiHash: API_HASH });
 
 const d: {
   version: string;
@@ -34,7 +34,7 @@ client.invoke.use(async ({ error }, next) => {
   }
 });
 
-await client.start({ botToken: TG_BOT_TOKEN });
+await client.start({ botToken: BOT_TOKEN });
 
 const [_, __, ___, chatId, messageId] = TG_MESSAGE_LINK.split("/");
 

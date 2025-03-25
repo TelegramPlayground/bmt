@@ -17,9 +17,9 @@ logging.basicConfig(
 )
 
 
-TG_API_ID = int(os.environ.get("TG_API_ID", "6"))
-TG_API_HASH = os.environ.get("TG_API_HASH", "")
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
+API_ID = int(os.environ.get("API_ID", "6"))
+API_HASH = os.environ.get("API_HASH", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
 
 
@@ -29,9 +29,9 @@ async def main():
     d["layer"] = types.TDLIB_VERSION
     f = "LevLam"
     client = Client(
-        token=TG_BOT_TOKEN,
-        api_id=TG_API_ID,
-        api_hash=TG_API_HASH,
+        token=BOT_TOKEN,
+        api_id=API_ID,
+        api_hash=API_HASH,
         database_encryption_key="cucumber",
         files_directory=f,
         use_file_database=False,
