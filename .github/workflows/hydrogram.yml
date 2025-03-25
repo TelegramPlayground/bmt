@@ -22,7 +22,7 @@ jobs:
           API_HASH: ${{ secrets.API_HASH }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
-          TG_FLOOD_SLEEP_THRESHOLD: ${{ secrets.TG_FLOOD_SLEEP_THRESHOLD }}
+          FLOOD_WAIT_THRESHOLD: ${{ secrets.FLOOD_WAIT_THRESHOLD }}
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning Pyrogram test"

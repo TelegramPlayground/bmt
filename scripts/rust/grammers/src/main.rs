@@ -20,7 +20,7 @@ async fn main() {
         .unwrap_or(6);
     let api_hash = env::var("API_HASH").unwrap_or(String::new());
     let bot_token = env::var("BOT_TOKEN").unwrap();
-    let tg_flood_sleep_threshold = env::var("TG_FLOOD_SLEEP_THRESHOLD")
+    let flood_wait_threshold = env::var("FLOOD_WAIT_THRESHOLD")
         .map(|var| var.parse::<u32>().unwrap())
         .unwrap_or(10);
     let message_link = env::var("MESSAGE_LINK").unwrap();
@@ -30,7 +30,7 @@ async fn main() {
         api_hash: api_hash,
         session: session::Session::new(),
         params: InitParams {
-            flood_sleep_threshold: tg_flood_sleep_threshold,
+            flood_sleep_threshold: flood_wait_threshold,
             ..InitParams::default()
         },
     })
