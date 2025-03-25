@@ -18,7 +18,7 @@ jobs:
 
       - name: Run script
         env:
-          APP_ID: ${{ secrets.APP_IDs }}
+          APP_ID: ${{ secrets.APP_ID }}
           API_HASH: ${{ secrets.API_HASH }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
