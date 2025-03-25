@@ -28,7 +28,7 @@ jobs:
           run: |
             echo "Beginning MadeLineProto test"
             mkdir -p outputs
-            php /app/scripts/php/mp1.php
+            php /app/scripts/php/madelineproto/mp1.php
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}

@@ -128,7 +128,7 @@ func main() {
 	benchmark.FileSize = fileSize
 
 	jsonBenchmark, _ := json.MarshalIndent(benchmark, "", "  ")
-	os.WriteFile("../../outputs/gogram.json", jsonBenchmark, 0644)
+	os.WriteFile("../../../outputs/gogram.json", jsonBenchmark, 0644)
 }
 
 func HumanizeBytes(size int64) string {

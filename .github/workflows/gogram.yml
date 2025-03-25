@@ -29,20 +29,16 @@ jobs:
         run: |
           echo "Beginning GoGram test"
           mkdir -p outputs
-          cd scripts/golang/
+          cd scripts/golang/gogram
           go mod tidy && go get github.com/amarnathcjd/gogram@master && go run .
-          cd ../../
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <GoGram>"
-          git add scripts/golang/go.mod scripts/golang/go.sum
-          git commit -m "dependency"
+          cd ../../../
 
       - name: Commit and push changes
         run: |
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <GoGram>"
-          git add outputs/ -A
+          git add scripts/golang/goggram/ outputs/ -A
           git commit -m "update GoGram bench"
           git pull origin master
           git push origin master

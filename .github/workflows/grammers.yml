@@ -24,9 +24,9 @@ jobs:
         run: |
           echo "Beginning Grammers test"
           mkdir -p outputs
-          cargo build --release --manifest-path scripts/rust/g1/Cargo.toml > /dev/null 2>&1
-          T=$(./scripts/rust/g1/target/release/g1)
-          cargo clean --manifest-path scripts/rust/g1/Cargo.toml > /dev/null 2>&1
+          cargo build --release --manifest-path scripts/rust/grammers/Cargo.toml > /dev/null 2>&1
+          T=$(./scripts/rust/grammers/target/release/g1)
+          cargo clean --manifest-path scripts/rust/grammers/Cargo.toml > /dev/null 2>&1
           echo "${T}" > outputs/grammers.json
 
       - name: Commit and push changes

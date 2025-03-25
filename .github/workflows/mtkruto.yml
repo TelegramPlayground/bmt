@@ -27,9 +27,9 @@ jobs:
         run: |
           echo "Beginning MTKruto test"
           mkdir -p outputs
-          cd scripts/javascript/
+          cd scripts/javascript/mtkruto
           MK=$(deno -A m4.ts)
-          cd ../../
+          cd ../../..
           # TODO:
           echo "${MK}" > outputs/mtkruto.json
 
