@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Telegram Clients Down/Up Load Benchmark</title>
-    <link href="//fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"
-        type="text/css" />
-    <link href="//cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet"
-        type="text/css" />
+    <link
+      href="//fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="//cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link href="./index.css" rel="stylesheet" type="text/css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <i class="ti ti-loader"></i>
-            </div>
-            <div class="loading-progress">
-                <div class="loading-progress-bar"></div>
-            </div>
-            <div class="loading-text"></div>
+      <div class="loading-content">
+        <div class="loading-logo">
+          <i class="ti ti-loader"></i>
         </div>
+        <div class="loading-progress">
+          <div class="loading-progress-bar"></div>
+        </div>
+        <div class="loading-text"></div>
+      </div>
     </div>
     <div class="stars"></div>
     <div class="noise"></div>
     <div class="container">
-        <nav class="navbar">
-            <div class="logo">
-                <i class="ti ti-bolt"></i>
-                <span>TGBench</span>
-            </div>
-            <button class="theme-toggle" id="themeToggle">
-                <i class="ti ti-sun"></i>
-            </button>
-        </nav>
+      <nav class="navbar">
+        <div class="logo">
+          <i class="ti ti-bolt"></i>
+          <span>TGBench</span>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+          <i class="ti ti-sun"></i>
+        </button>
+      </nav>
 
-        <header class="hero">
-            <h1>Telegram Clients <span>Speed Test</span></h1>
-            <p>Compare Down <i class="ti ti-download"></i> / Up <i class="ti ti-upload"></i> Load metrics across different Telegram Client libraries</p>
-        </header>
+      <header class="hero">
+        <h1>Telegram Clients <span>Speed Test</span></h1>
+        <p>
+          Compare Down <i class="ti ti-download"></i> / Up <i
+            class="ti ti-upload"
+          ></i> Load metrics across different Telegram Client libraries
+        </p>
+      </header>
 
-        <main id="app" class="content">
-            <div class="loading">
-                <div class="spinner"></div>
-                <span>Fetching benchmark data...</span>
-            </div>
-        </main>
+      <main id="app" class="content">
+        <div class="loading">
+          <div class="spinner"></div>
+          <span>Fetching benchmark data...</span>
+        </div>
+      </main>
 
-        <footer class="footer">
-            <b>
-                <p>Data refreshed frequently • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a> • <a
-                        href="https://github.com/amarnathcjd">@AmarnathCJD</a>
-                </p>
-            </b>
-        </footer>
+      <footer class="footer">
+        <b>
+          <p>
+            Data refreshed frequently • <a
+              href="https://github.com/TelegramPlayGround/bmt"
+            >View Source</a> • <a href="https://github.com/amarnathcjd"
+            >@AmarnathCJD</a>
+          </p>
+        </b>
+      </footer>
     </div>
 
     <script type="text/javascript" src="./index.js"></script>
-</body>
-
+  </body>
 </html>
