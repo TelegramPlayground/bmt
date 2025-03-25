@@ -28,10 +28,9 @@ jobs:
           echo "Beginning MTKruto test"
           mkdir -p outputs
           cd scripts/javascript/mtkruto
-          MK=$(deno -A m4.ts)
+          deno cache --reload m4.ts
+          deno -A m4.ts
           cd ../../..
-          # TODO:
-          echo "${MK}" > outputs/mtkruto.json
 
       - name: Commit and push changes
         run: |
