@@ -98,7 +98,7 @@ function formatSpeed(bytes, seconds, si = false, dp = 2) {
     const thresh = si ? 1000 : 1024;
 
     if (Math.abs(bytes) < thresh) {
-        return (bytes / seconds).toFixed(dp) + " B/s";
+        return `${(bytes / seconds).toFixed(dp)} B/s`;
     }
 
     bytes = bytes / seconds;
@@ -121,9 +121,9 @@ function formatSpeed(bytes, seconds, si = false, dp = 2) {
         u < units.length - 1
     );
     if (u === -1) {
-        return "" + (bytes).toFixed(dp) + " " + "Bytes/s";
+        return `${(bytes).toFixed(dp)} Bytes/s`;
     }
-    return "" + (bytes).toFixed(dp) + " " + units[u] + "/s";
+    return `${(bytes).toFixed(dp)} ${units[u]}/s`;
 }
 
 function calculateScore(data) {
