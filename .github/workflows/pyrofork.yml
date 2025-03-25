@@ -1,7 +1,7 @@
-name: PyroFork (t.me/tgLibs) Benchmark Testing Tool
+name: pyrofork
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   schedule:
     - cron: "33 3 * * 2"
 
@@ -37,9 +37,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config pull.rebase true
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <PyroFork>"
           git add out/ -A
-          git commit -m "update PyroFork bench"
+          LIBRARY="Pyrofork" ./.github/_commit.sh
           git pull origin master
           git push origin master

@@ -1,7 +1,7 @@
-name: Grammers (t.me/tgLibs) Benchmark Testing Tool
+name: grammers
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   schedule:
     - cron: "33 1 * * 2"
 
@@ -32,9 +32,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config pull.rebase true
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <Grammers>"
           git add out/ -A
-          git commit -m "update Grammers bench"
+          LIBRARY="gramme.rs" ./.github/_commit.sh
           git pull origin master
           git push origin master

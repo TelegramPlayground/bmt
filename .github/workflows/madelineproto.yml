@@ -1,7 +1,7 @@
-name: MadeLineProto (t.me/tgLibs) Benchmark Testing Tool
+name: madelineproto
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   schedule:
     - cron: '33 2 * * 2'
 
@@ -40,9 +40,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config pull.rebase true
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <MadeLineProto>"
           git add out/ -A
-          git commit -m "update MadeLineProto bench"
+          LIBRARY="MadelineProto" ./.github/_commit.sh
           git pull origin master
           git push origin master

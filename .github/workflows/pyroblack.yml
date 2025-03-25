@@ -1,7 +1,7 @@
-name: PyroBlack (t.me/tgLibs) Benchmark Testing Tool
+name: pyroblack
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   schedule:
     - cron: "3 3 * * 2"
 
@@ -37,9 +37,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config pull.rebase true
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <PyroBlack>"
           git add out/ -A
-          git commit -m "update PyroBlack bench"
+          LIBRARY="pyroblack" ./.github/_commit.sh
           git pull origin master
           git push origin master

@@ -1,7 +1,7 @@
-name: MTKruto (t.me/tgLibs) Benchmark Testing Tool
+name: mtkruto
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 jobs:
   build:
@@ -37,10 +37,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config pull.rebase true
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <MTKruto>"
-          git add out/ -A
-          git add src/mtkruto/ -A
-          git commit -m "update MTKruto bech"
+          git add sec/mtkruto out/ -A
+          LIBRARY="MTKruto" ./.github/_commit.sh
           git pull origin master
           git push origin master

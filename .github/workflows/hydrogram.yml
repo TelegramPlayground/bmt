@@ -1,7 +1,7 @@
-name: Hydrogram (t.me/tgLibs) Benchmark Testing Tool
+name: hydrogram
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 jobs:
   build:
@@ -36,9 +36,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config pull.rebase true
-          git config user.email "41898282@users.noreply.github.com"
-          git config user.name "GitHub Actions <Hydrogram>"
           git add out/ -A
-          git commit -m "update Hydrogram bench"
+          LIBRARY="Hydrogram" ./.github/_commit.sh
           git pull origin master
           git push origin master
