@@ -110,12 +110,19 @@ function formatSpeed(bytes, seconds, si = false, dp = 2) {
     const r = 10 ** dp;
 
     do {
-        bytes /= thresh;
+        const tmpbytes = bytes / thresh;
+        if (Math.round(tmpbytes) <= 0) {
+            break;
+        }
+        bytes = tmpbytes
         ++u;
     } while (
-        Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1
+        Math.round(Math.abs(bytes) * r) / r >= thresh &&
+        u < units.length - 1
     );
-
+    if (u === -1) {
+        return "" + (bytes).toFixed(dp) + " " + "Bytes/s";
+    }
     return "" + (bytes).toFixed(dp) + " " + units[u] + "/s";
 }
 
