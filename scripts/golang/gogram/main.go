@@ -39,7 +39,7 @@ func main() {
 		APP_ID       = os.Getenv("API_ID")
 		APP_HASH     = os.Getenv("API_HASH")
 		BOT_TOKEN    = os.Getenv("BOT_TOKEN")
-		MESSAGE_LINK = os.Getenv("TG_MESSAGE_LINK")
+		MESSAGE_LINK = os.Getenv("MESSAGE_LINK")
 		TG_SESSION   = os.Getenv("TG_SESSION")
 	)
 

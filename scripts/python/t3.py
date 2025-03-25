@@ -20,7 +20,7 @@ logging.basicConfig(
 API_ID = int(os.environ.get("API_ID", "6"))
 API_HASH = os.environ.get("API_HASH", "")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
+MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
 
 
 async def main():
@@ -52,7 +52,7 @@ async def main():
     await client.start()
     internalLinkInfo = await client.invoke({
         "@type": "getInternalLinkType",
-        "link": TG_MESSAGE_LINK
+        "link": MESSAGE_LINK
     })
     messageLinkInfo = await client.invoke({
         "@type": "getMessageLinkInfo",

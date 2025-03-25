@@ -23,7 +23,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
           TG_FLOOD_SLEEP_THRESHOLD: ${{ secrets.TG_FLOOD_SLEEP_THRESHOLD }}
-          TG_MESSAGE_LINK: ${{ secrets.TG_MESSAGE_LINK }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning MTKruto test"
           mkdir -p outputs

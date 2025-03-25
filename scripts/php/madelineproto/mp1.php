@@ -48,7 +48,7 @@ Assert::true(opcache_get_status(false)['jit']['enabled'], "JIT is required for m
 $API_ID = (int) getenv("API_ID");
 $API_HASH = getenv("API_HASH");
 $BOT_TOKEN = getenv("BOT_TOKEN");
-$messageLink = getenv("TG_MESSAGE_LINK");
+$messageLink = getenv("MESSAGE_LINK");
 
 /**
  * @MadeLineProto Settings

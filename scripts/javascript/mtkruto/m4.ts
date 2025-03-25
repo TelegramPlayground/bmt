@@ -4,7 +4,7 @@ const API_ID = +(Deno.env.get("API_ID") || "");
 const API_HASH = Deno.env.get("API_HASH") || "";
 const BOT_TOKEN = Deno.env.get("BOT_TOKEN") || "";
 const TG_FLOOD_SLEEP_THRESHOLD = +(Deno.env.get("TG_FLOOD_SLEEP_THRESHOLD") || "") || 10;
-const TG_MESSAGE_LINK = Deno.env.get("TG_MESSAGE_LINK") || "";
+const MESSAGE_LINK = Deno.env.get("MESSAGE_LINK") || "";
 
 setLogVerbosity(5);
 const client = new Client({ apiId: API_ID, apiHash: API_HASH });
@@ -36,7 +36,7 @@ client.invoke.use(async ({ error }, next) => {
 
 await client.start({ botToken: BOT_TOKEN });
 
-const [_, __, ___, chatId, messageId] = TG_MESSAGE_LINK.split("/");
+const [_, __, ___, chatId, messageId] = MESSAGE_LINK.split("/");
 
 const message = await client.getMessage(chatId, +messageId);
 if (!message || !("document" in message)) {

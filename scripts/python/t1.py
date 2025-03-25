@@ -22,7 +22,7 @@ API_ID = int(os.environ.get("API_ID", "6"))
 API_HASH = os.environ.get("API_HASH", "")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 TG_FLOOD_SLEEP_THRESHOLD = int(os.environ.get("TG_FLOOD_SLEEP_THRESHOLD", "10"))
-TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
+MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
 
 
 d = {}
@@ -39,7 +39,7 @@ d["layer"] = LAYER
 app.connect()
 app.sign_in(bot_token=BOT_TOKEN)
 
-_, _, _, chat_id, s_message_id = TG_MESSAGE_LINK.split("/")
+_, _, _, chat_id, s_message_id = MESSAGE_LINK.split("/")
 
 t1 = datetime.now()
 message = app.get_messages(entity=chat_id, ids=int(s_message_id))

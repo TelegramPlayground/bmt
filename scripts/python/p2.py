@@ -22,7 +22,7 @@ API_HASH = os.environ.get("API_HASH", "")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 TG_FLOOD_SLEEP_THRESHOLD = int(os.environ.get("TG_FLOOD_SLEEP_THRESHOLD", "10"))
 TG_SESSION = os.environ.get("TG_SESSION", "")
-TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
+MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
 
 
 async def main():
@@ -42,7 +42,7 @@ async def main():
         d["version"] = __version__
         d["layer"] = layer
 
-        _, _, _, chat_id, s_message_id = TG_MESSAGE_LINK.split("/")
+        _, _, _, chat_id, s_message_id = MESSAGE_LINK.split("/")
 
         t1 = datetime.now()
         message = await app.get_messages(chat_id=chat_id, message_ids=int(s_message_id))

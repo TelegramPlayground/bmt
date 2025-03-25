@@ -23,7 +23,7 @@ async fn main() {
     let tg_flood_sleep_threshold = env::var("TG_FLOOD_SLEEP_THRESHOLD")
         .map(|var| var.parse::<u32>().unwrap())
         .unwrap_or(10);
-    let tg_message_link = env::var("TG_MESSAGE_LINK").unwrap();
+    let message_link = env::var("MESSAGE_LINK").unwrap();
 
     let app = Client::connect(Config {
         api_id: api_id,
@@ -39,7 +39,7 @@ async fn main() {
 
     app.bot_sign_in(&bot_token).await.unwrap();
 
-    let mut link = tg_message_link.split("/").skip(3);
+    let mut link = message_link.split("/").skip(3);
     let chat_id = link.next().unwrap();
     let s_message_id = link.next().unwrap().parse::<i32>().unwrap();
 
