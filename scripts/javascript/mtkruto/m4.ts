@@ -23,7 +23,7 @@ const d: {
     end_time: number;
     time_taken: number;
   };
-} = { version: "", layer: Api.LAYER, file_size: 0, download: { start_time: 0, end_time: 0, time_taken: 0 }, upload: { start_time: 0, end_time: 0, time_taken: 0 } };
+} = { version: "N / A", layer: Api.LAYER, file_size: 0, download: { start_time: 0, end_time: 0, time_taken: 0 }, upload: { start_time: 0, end_time: 0, time_taken: 0 } };
 
 client.invoke.use(async ({ error }, next) => {
   if (error instanceof errors.FloodWait && error.seconds <= TG_FLOOD_SLEEP_THRESHOLD) {
@@ -36,9 +36,8 @@ client.invoke.use(async ({ error }, next) => {
 
 await client.start({ botToken: TG_BOT_TOKEN });
 
-const [_, __, ___, chatId, messageId] = TG_MESSAGE_LINK.split("/");
+const message = await client.resolveMessageLink(TG_MESSAGE_LINK);
 
-const message = await client.getMessage(chatId, +messageId);
 if (!message || !("document" in message)) {
   console.log("Invalid message.");
   Deno.exit(1);
@@ -53,10 +52,12 @@ d.download.end_time = Date.now() / 1_000;
 d.download.time_taken = d.download.end_time - d.download.start_time;
 
 d.upload.start_time = Date.now() / 1_000;
-await client.sendDocument(message.chat.id, chunks, { fileName: "MTKruto", replyTo: { messageId: message.id } });
+await client.sendDocument(message.chat.id, new Uint8Array(await new Blob(chunks).arrayBuffer()), { fileName: "MTKruto", replyTo: { messageId: message.id } });
 d.upload.end_time = Date.now() / 1_000;
 d.upload.time_taken = d.upload.end_time;
 
 await client.disconnect();
 
-console.log(JSON.stringify(d, null, 2));
+const encoder = new TextEncoder();
+const data = encoder.encode(JSON.stringify(d, null, 2));
+await Deno.writeFile("../../../outputs/mtkruto.json", data);
