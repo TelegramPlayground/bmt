@@ -45,10 +45,10 @@ Assert::true(opcache_get_status(false)['jit']['enabled'], "JIT is required for m
  * required environment variables
  */
 
-$TG_API_ID = (int) getenv("TG_API_ID");
-$TG_API_HASH = getenv("TG_API_HASH");
-$TG_BOT_TOKEN = getenv("TG_BOT_TOKEN");
-$messageLink = getenv("TG_MESSAGE_LINK");
+$API_ID = (int) getenv("API_ID");
+$API_HASH = getenv("API_HASH");
+$BOT_TOKEN = getenv("BOT_TOKEN");
+$messageLink = getenv("MESSAGE_LINK");
 
 /**
  * @MadeLineProto Settings
@@ -64,11 +64,11 @@ $settings->getFiles()->setDownloadParallelChunks(50);
 $settings->getFiles()->setAllowAutomaticUpload(true);
 
 $settings->getAppInfo()
-    ->setApiId($TG_API_ID)
-    ->setApiHash($TG_API_HASH);
+    ->setApiId($API_ID)
+    ->setApiHash($API_HASH);
 
 $api = new \danog\MadelineProto\API('session.madeline', $settings);
-$api->botLogin($TG_BOT_TOKEN);
+$api->botLogin($BOT_TOKEN);
 $api->start();
 $api->fullGetSelf();
 

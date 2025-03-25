@@ -36,10 +36,10 @@ func main() {
 
 	dotenv.Load()
 	var (
-		APP_ID       = os.Getenv("TG_API_ID")
-		APP_HASH     = os.Getenv("TG_API_HASH")
-		BOT_TOKEN    = os.Getenv("TG_BOT_TOKEN")
-		MESSAGE_LINK = os.Getenv("TG_MESSAGE_LINK")
+		APP_ID       = os.Getenv("API_ID")
+		APP_HASH     = os.Getenv("API_HASH")
+		BOT_TOKEN    = os.Getenv("BOT_TOKEN")
+		MESSAGE_LINK = os.Getenv("MESSAGE_LINK")
 		TG_SESSION   = os.Getenv("TG_SESSION")
 	)
 

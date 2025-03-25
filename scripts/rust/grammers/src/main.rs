@@ -15,31 +15,31 @@ fn now() -> f64 {
 async fn main() {
     let version = InitParams::default().app_version;
 
-    let tg_api_id = env::var("TG_API_ID")
+    let api_id = env::var("API_ID")
         .map(|var| var.parse::<i32>().unwrap())
         .unwrap_or(6);
-    let tg_api_hash = env::var("TG_API_HASH").unwrap_or(String::new());
-    let tg_bot_token = env::var("TG_BOT_TOKEN").unwrap();
-    let tg_flood_sleep_threshold = env::var("TG_FLOOD_SLEEP_THRESHOLD")
+    let api_hash = env::var("API_HASH").unwrap_or(String::new());
+    let bot_token = env::var("BOT_TOKEN").unwrap();
+    let flood_wait_threshold = env::var("FLOOD_WAIT_THRESHOLD")
         .map(|var| var.parse::<u32>().unwrap())
         .unwrap_or(10);
-    let tg_message_link = env::var("TG_MESSAGE_LINK").unwrap();
+    let message_link = env::var("MESSAGE_LINK").unwrap();
 
     let app = Client::connect(Config {
-        api_id: tg_api_id,
-        api_hash: tg_api_hash,
+        api_id: api_id,
+        api_hash: api_hash,
         session: session::Session::new(),
         params: InitParams {
-            flood_sleep_threshold: tg_flood_sleep_threshold,
+            flood_sleep_threshold: flood_wait_threshold,
             ..InitParams::default()
         },
     })
     .await
     .unwrap();
 
-    app.bot_sign_in(&tg_bot_token).await.unwrap();
+    app.bot_sign_in(&bot_token).await.unwrap();
 
-    let mut link = tg_message_link.split("/").skip(3);
+    let mut link = message_link.split("/").skip(3);
     let chat_id = link.next().unwrap();
     let s_message_id = link.next().unwrap().parse::<i32>().unwrap();
 

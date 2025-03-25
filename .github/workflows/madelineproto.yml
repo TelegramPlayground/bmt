@@ -19,23 +19,23 @@ jobs:
           image: hub.madelineproto.xyz/danog/madelineproto:latest
           options: >-
             -v ${{ github.workspace }}:/app
-            -e TG_API_ID
-            -e TG_API_HASH
-            -e TG_BOT_TOKEN
+            -e API_ID
+            -e API_HASH
+            -e BOT_TOKEN
             -e TG_SESSION
-            -e TG_FLOOD_SLEEP_THRESHOLD
-            -e TG_MESSAGE_LINK
+            -e FLOOD_WAIT_THRESHOLD
+            -e MESSAGE_LINK
           run: |
             echo "Beginning MadeLineProto test"
             mkdir -p outputs
             php /app/scripts/php/madelineproto/mp1.php
         env:
-          TG_API_ID: ${{ secrets.TG_API_ID }}
-          TG_API_HASH: ${{ secrets.TG_API_HASH }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
-          TG_FLOOD_SLEEP_THRESHOLD: ${{ secrets.TG_FLOOD_SLEEP_THRESHOLD }}
-          TG_MESSAGE_LINK: ${{ secrets.TG_MESSAGE_LINK }}
+          FLOOD_WAIT_THRESHOLD: ${{ secrets.FLOOD_WAIT_THRESHOLD }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
 
       - name: Commit and push changes
         run: |

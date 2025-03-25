@@ -18,12 +18,12 @@ jobs:
 
       - name: Run script
         env:
-          TG_API_ID: ${{ secrets.TG_API_ID }}
-          TG_API_HASH: ${{ secrets.TG_API_HASH }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
-          TG_FLOOD_SLEEP_THRESHOLD: ${{ secrets.TG_FLOOD_SLEEP_THRESHOLD }}
-          TG_MESSAGE_LINK: ${{ secrets.TG_MESSAGE_LINK }}
+          FLOOD_WAIT_THRESHOLD: ${{ secrets.FLOOD_WAIT_THRESHOLD }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning MTKruto test"
           mkdir -p outputs

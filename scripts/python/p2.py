@@ -17,12 +17,12 @@ logging.basicConfig(
 )
 
 
-TG_API_ID = int(os.environ.get("TG_API_ID", "6"))
-TG_API_HASH = os.environ.get("TG_API_HASH", "")
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
-TG_FLOOD_SLEEP_THRESHOLD = int(os.environ.get("TG_FLOOD_SLEEP_THRESHOLD", "10"))
+API_ID = int(os.environ.get("API_ID", "6"))
+API_HASH = os.environ.get("API_HASH", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+FLOOD_WAIT_THRESHOLD = int(os.environ.get("FLOOD_WAIT_THRESHOLD", "10"))
 TG_SESSION = os.environ.get("TG_SESSION", "")
-TG_MESSAGE_LINK = os.environ.get("TG_MESSAGE_LINK", "")
+MESSAGE_LINK = os.environ.get("MESSAGE_LINK", "")
 
 
 async def main():
@@ -31,18 +31,18 @@ async def main():
         name="my_account",
         session_string=TG_SESSION,
         in_memory=True,
-        api_id=TG_API_ID,
-        api_hash=TG_API_HASH,
-        sleep_threshold=TG_FLOOD_SLEEP_THRESHOLD,
+        api_id=API_ID,
+        api_hash=API_HASH,
+        sleep_threshold=FLOOD_WAIT_THRESHOLD,
         no_updates=True,
-        bot_token=TG_BOT_TOKEN
+        bot_token=BOT_TOKEN
     ) as app:
         app.upload_boost = True
 
         d["version"] = __version__
         d["layer"] = layer
 
-        _, _, _, chat_id, s_message_id = TG_MESSAGE_LINK.split("/")
+        _, _, _, chat_id, s_message_id = MESSAGE_LINK.split("/")
 
         t1 = datetime.now()
         message = await app.get_messages(chat_id=chat_id, message_ids=int(s_message_id))
