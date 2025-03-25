@@ -149,5 +149,5 @@ $j = [
     "download" => $fileMI,
     "upload" => $uploadMI
 ];
-file_put_contents("/app/outputs/madelineproto.json", json_encode($j, JSON_PRETTY_PRINT));
+file_put_contents("/app/out/madelineproto.json", json_encode($j, JSON_PRETTY_PRINT));
 ?>

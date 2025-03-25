@@ -26,18 +26,18 @@ jobs:
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning Pyrogram test"
-          mkdir -p outputs
+          mkdir -p out
           pip install --force-reinstall Pyrogram==2.0.106 TgCrypto==1.2.5 > /dev/null 2>&1
-          P=$(python scripts/python/p2.py)
+          P=$(python src/pyrogram/main.py)
           pip uninstall -y pyrogram tgcrypto > /dev/null 2>&1
-          echo "${P}" > outputs/pyrogram.json
+          echo "${P}" > out/pyrogram.json
 
       - name: Commit and push changes
         run: |
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <Pyrogram>"
-          git add outputs/ -A
+          git add out/ -A
           git commit -m "update Pyrogram bench"
           git pull origin master
           git push origin master

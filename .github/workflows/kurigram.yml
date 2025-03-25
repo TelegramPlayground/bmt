@@ -3,7 +3,7 @@ name: Kurigram (t.me/tgLibs) Benchmark Testing Tool
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '3 2 * * 2'
+    - cron: "3 2 * * 2"
 
 jobs:
   build:
@@ -28,18 +28,18 @@ jobs:
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning Pyrogram test"
-          mkdir -p outputs
+          mkdir -p out
           pip install --force-reinstall kurigram TgCrypto==1.2.5 > /dev/null 2>&1
-          P=$(python scripts/python/p2.py)
+          P=$(python src/pyrogram/main.py)
           pip uninstall -y kurigram tgcrypto > /dev/null 2>&1
-          echo "${P}" > outputs/kurigram.json
+          echo "${P}" > out/kurigram.json
 
       - name: Commit and push changes
         run: |
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <Kurigram>"
-          git add outputs/ -A
+          git add out/ -A
           git commit -m "update Kurigram bench"
           git pull origin master
           git push origin master

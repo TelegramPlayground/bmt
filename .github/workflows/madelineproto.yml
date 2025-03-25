@@ -27,8 +27,8 @@ jobs:
             -e MESSAGE_LINK
           run: |
             echo "Beginning MadeLineProto test"
-            mkdir -p outputs
-            php /app/scripts/php/madelineproto/mp1.php
+            mkdir -p out
+            php /app/src/madelineproto/mp1.php
         env:
           APP_ID: ${{ secrets.APP_ID }}
           API_HASH: ${{ secrets.API_HASH }}
@@ -42,7 +42,7 @@ jobs:
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <MadeLineProto>"
-          git add outputs/ -A
+          git add out/ -A
           git commit -m "update MadeLineProto bench"
           git pull origin master
           git push origin master

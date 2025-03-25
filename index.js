@@ -177,7 +177,7 @@ async function fetchClientData() {
     const invalidResults = await Promise.all(
         libs.map(async lib => {
             try {
-                const res = await fetch(`https://raw.githubusercontent.com/TelegramPlayGround/bmt/master/outputs/${lib.name}.json`);
+                const res = await fetch(`https://raw.githubusercontent.com/TelegramPlayGround/bmt/master/out/${lib.name}.json`);
                 const data = await res.json();
                 return { lib, data, error: null };
             }

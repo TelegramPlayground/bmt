@@ -26,9 +26,9 @@ jobs:
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning MTKruto test"
-          mkdir -p outputs
-          cd scripts/javascript/mtkruto
-          deno cache --reload m4.ts
+          mkdir -p out
+          cd src/mtkruto
+          deno cache --reload main.ts
           deno -A m4.ts
           cd ../../..
 
@@ -37,7 +37,7 @@ jobs:
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <MTKruto>"
-          git add outputs/ -A
+          git add out/ -A
           git commit -m "update MTKruto bech"
           git pull origin master
           git push origin master
