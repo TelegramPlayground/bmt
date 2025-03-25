@@ -3,7 +3,7 @@ name: Telethon (t.me/tgLibs) Benchmark Testing Tool
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '33 4 * * 2'
+    - cron: "33 4 * * 2"
 
 jobs:
   build:
@@ -28,18 +28,18 @@ jobs:
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning Telethon test"
-          mkdir -p outputs
+          mkdir -p out
           pip install --force-reinstall Telethon cryptg==0.5.0.post0 > /dev/null 2>&1
-          T=$(python scripts/python/t1.py)
+          T=$(python src/telethon/main.py)
           pip uninstall -y telethon cryptg > /dev/null 2>&1
-          echo "${T}" > outputs/telethon.json
+          echo "${T}" > out/telethon.json
 
       - name: Commit and push changes
         run: |
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <Telethon>"
-          git add outputs/ -A
+          git add out/ -A
           git commit -m "update Telethon bench"
           git pull origin master
           git push origin master

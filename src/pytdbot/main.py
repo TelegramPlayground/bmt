@@ -89,7 +89,7 @@ async def main():
     }
     await client.stop()
     shutil.rmtree(f, ignore_errors=True)
-    with open("./outputs/pytdbot.json", "w", encoding="utf-8") as f:
+    with open("./out/pytdbot.json", "w", encoding="utf-8") as f:
         dump(d, f, ensure_ascii=False, indent=2)
 
 

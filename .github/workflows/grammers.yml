@@ -3,7 +3,7 @@ name: Grammers (t.me/tgLibs) Benchmark Testing Tool
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '33 1 * * 2'
+    - cron: "33 1 * * 2"
 
 jobs:
   build:
@@ -23,18 +23,18 @@ jobs:
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
         run: |
           echo "Beginning Grammers test"
-          mkdir -p outputs
-          cargo build --release --manifest-path scripts/rust/grammers/Cargo.toml > /dev/null 2>&1
-          T=$(./scripts/rust/grammers/target/release/g1)
-          cargo clean --manifest-path scripts/rust/grammers/Cargo.toml > /dev/null 2>&1
-          echo "${T}" > outputs/grammers.json
+          mkdir -p out
+          cargo build --release --manifest-path src/grammers/Cargo.toml > /dev/null 2>&1
+          T=$(./src/grammers/target/release/g1)
+          cargo clean --manifest-path src/grammers/Cargo.toml > /dev/null 2>&1
+          echo "${T}" > out/grammers.json
 
       - name: Commit and push changes
         run: |
           git config pull.rebase true
           git config user.email "41898282@users.noreply.github.com"
           git config user.name "GitHub Actions <Grammers>"
-          git add outputs/ -A
+          git add out/ -A
           git commit -m "update Grammers bench"
           git pull origin master
           git push origin master
