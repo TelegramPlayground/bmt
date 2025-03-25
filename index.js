@@ -71,6 +71,12 @@ const libs = [
         display: "PyrogramMod",
         language: "python",
     },
+    {
+        name: "mtkruto",
+        repo: "https://github.com/MTKruto/MTKruto",
+        display: "MTKruto",
+        language: "deno",
+    },
 ];
 
 /**

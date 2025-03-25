@@ -1,4 +1,4 @@
-import { Client, errors, setLogVerbosity, LAYER } from "jsr:@mtkruto/mtkruto";
+import { Client, errors, setLogVerbosity, Api } from "jsr:@mtkruto/mtkruto";
 
 const TG_API_ID = +(Deno.env.get("TG_API_ID") || "");
 const TG_API_HASH = Deno.env.get("TG_API_HASH") || "";
@@ -23,7 +23,7 @@ const d: {
     end_time: number;
     time_taken: number;
   };
-} = { version: "", layer: LAYER, file_size: 0, download: { start_time: 0, end_time: 0, time_taken: 0 }, upload: { start_time: 0, end_time: 0, time_taken: 0 } };
+} = { version: "", layer: Api.LAYER, file_size: 0, download: { start_time: 0, end_time: 0, time_taken: 0 }, upload: { start_time: 0, end_time: 0, time_taken: 0 } };
 
 client.invoke.use(async ({ error }, next) => {
   if (error instanceof errors.FloodWait && error.seconds <= TG_FLOOD_SLEEP_THRESHOLD) {
