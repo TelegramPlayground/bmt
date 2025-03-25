@@ -3,13 +3,13 @@
   "layer": 199,
   "file_size": 2097152000,
   "download": {
-    "start_time": 1742269699.630249,
-    "end_time": 1742269828.907626,
-    "time_taken": 129
+    "start_time": 1742874535.612951,
+    "end_time": 1742874789.418712,
+    "time_taken": 253
   },
   "upload": {
-    "start_time": 1742269828.907634,
-    "end_time": 1742270104.016972,
-    "time_taken": 275
+    "start_time": 1742874789.418719,
+    "end_time": 1742875202.539095,
+    "time_taken": 413
   }
 }
