@@ -13,11 +13,16 @@
 - Calculate time.
 - Upload the saved file to the same chat.
 - Calculate time.
+- Logout from Telegram. (ideally, but currently this is not done by the scripts.)
 - Write to the appropriate file in the `outputs` directory.
 
 ## Motivation
 
 - [This Telegram Chat](https://t.me/gogrammers/703819)
+
+## Actions Secrets used in this Repository
+
+![](https://is.gd/IkAgCs)
 
 ## Credits
 

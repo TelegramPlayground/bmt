@@ -56,7 +56,7 @@ await client.sendDocument(message.chat.id, new Uint8Array(await new Blob(chunks)
 d.upload.end_time = Date.now() / 1_000;
 d.upload.time_taken = d.upload.end_time;
 
-await client.disconnect();
+client.disconnect();
 
 const encoder = new TextEncoder();
 const data = encoder.encode(JSON.stringify(d, null, 2));
