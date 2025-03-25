@@ -36,7 +36,7 @@ client.invoke.use(async ({ error }, next) => {
 
 await client.start({ botToken: BOT_TOKEN });
 
-const message = await client.resolveMessageLink(TG_MESSAGE_LINK);
+const message = await client.resolveMessageLink(MESSAGE_LINK);
 
 if (!message || !("document" in message)) {
   console.log("Invalid message.");
