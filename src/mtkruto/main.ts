@@ -1,11 +1,10 @@
-import { Api, Client, setLogVerbosity } from "jsr:@mtkruto/mtkruto";
+import { Api, Client } from "@mtkruto/mtkruto";
 
 const APP_ID = +(Deno.env.get("APP_ID") || "");
 const API_HASH = Deno.env.get("API_HASH") || "";
 const BOT_TOKEN = Deno.env.get("BOT_TOKEN") || "";
 const MESSAGE_LINK = Deno.env.get("MESSAGE_LINK") || "";
 
-setLogVerbosity(5);
 const client = new Client({ apiId: APP_ID, apiHash: API_HASH });
 
 const d: {
@@ -23,7 +22,11 @@ const d: {
     time_taken: number;
   };
 } = {
-  version: "N / A",
+  version: JSON.parse(Deno.readTextFileSync("deno.json"))
+    .imports["@mtkruto/mtkruto"]
+    .split("@")
+    .slice(-1)[0]
+    .replaceAll("^", ""),
   layer: Api.LAYER,
   file_size: 0,
   download: { start_time: 0, end_time: 0, time_taken: 0 },
