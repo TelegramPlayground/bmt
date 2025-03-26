@@ -1,0 +1,39 @@
+name: mtkruto
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 5 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.1.9
+
+      - name: Run script
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+        run: |
+          echo "Beginning MTKruto test"
+          mkdir -p out
+          cd src/mtkruto
+          rm deno.lock
+          echo "{}" > deno.json
+          deno install jsr:@mtkruto/mtkruto
+          LOG_VERBOSITY=5 deno -A main.ts
+          cd ../..
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="MTKruto" ./.github/_commit.sh
