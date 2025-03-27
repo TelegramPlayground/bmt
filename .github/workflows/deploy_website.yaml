@@ -1,0 +1,37 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - www/**
+      - .github/workflows/deploy_website.yaml
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.1.9
+
+      - name: Run script
+        run: |
+          cd www
+          deno add jsr:@minify-html/deno
+          deno --allow-net --allow-write runner.ts
+          rm deno.json deno.lock runner.ts
+          cd ..
+
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./www
