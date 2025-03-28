@@ -77,6 +77,12 @@ const libs = [
     display: "MTKruto",
     language: "deno",
   },
+  {
+    name: "mtcute",
+    repo: "https://github.com/mtcute/mtcute",
+    display: "mtcute",
+    language: "typescript",
+  },
 ];
 
 /**
