@@ -18,6 +18,20 @@
       type="text/css"
     />
     <link href="./index.css" rel="stylesheet" type="text/css" />
+
+    <!-- if each site makes their own METAs, then ...?-->
+    <!-- OpenGraph-->
+    <meta property="og:title" content="Telegram Clients Speed Test" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Compare Down / Up Load metrics across different Telegram Client libraries" />
+
+    <!--site_verification property must be present, but could be empty (no IVBot-side verification for now?)-->
+    <meta property="tg:site_verification" content="g7j8/rPFXfhyrq5q0QQV7EsYWv4=" />
+    <!--published_time property must be present, but you could leave content empty if no $published_date is wanted-->
+    <meta property="article:published_time" content="" />
+    <meta property="article:author" content="https://t.me/DownLoadPlayGround/802" />
+    <meta property="telegram:channel" content="@DownLoadPlayGround" />
+
   </head>
 
   <body>
@@ -34,7 +48,7 @@
     </div>
     <div class="stars"></div>
     <div class="noise"></div>
-    <div class="container">
+    <div class="article">
       <nav class="navbar">
         <div class="logo">
           <i class="ti ti-bolt"></i>
@@ -54,20 +68,17 @@
         </p>
       </header>
 
-      <main id="app" class="content">
+      <article id="app" class="article__content">
         <div class="loading">
           <div class="spinner"></div>
           <span>Fetching benchmark data...</span>
         </div>
-      </main>
+      </article>
 
       <footer class="footer">
         <b>
           <p>
-            Data refreshed frequently • <a
-              href="https://github.com/TelegramPlayGround/bmt"
-            >View Source</a> • <a href="https://github.com/amarnathcjd"
-            >@AmarnathCJD</a>
+            Data refreshed frequently • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a> • <a href="https://github.com/amarnathcjd">@AmarnathCJD</a>
           </p>
         </b>
       </footer>

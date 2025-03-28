@@ -143,12 +143,12 @@ function createClientCard(data, lib, index, position) {
   const uploadSpeed = formatSpeed(data.file_size, data.upload.time_taken);
   const positionBadge = `<div class="position-badge">#${position}</div>`;
 
-  let clientMeta = `<div class="client-meta">v${
-    data.version.replace("v", "")
-  } • Layer ${data.layer}</div>`;
+  let clientMeta = `<div class="client-meta">v${data.version} • Layer ${data.layer}</div>`;
   if (lib.name === "pytdbot") {
-    clientMeta =
-      `<div class="client-meta">v${data.version} • TDLib ${data.layer}</div>`;
+    clientMeta = `<div class="client-meta">v${data.version} • TDLib ${data.layer}</div>`;
+  }
+  else if (lib.name === "gogram") {
+    clientMeta = `<div class="client-meta">${data.version} • Layer ${data.layer}</div>`;
   }
 
   return `

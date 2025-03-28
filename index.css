@@ -188,7 +188,7 @@ body {
   pointer-events: none;
 }
 
-.container {
+.article {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
@@ -265,7 +265,7 @@ body {
   font-size: 1.125rem;
 }
 
-.content {
+.article__content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
@@ -460,7 +460,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .container {
+  .article {
     padding: 1rem;
   }
 
@@ -468,7 +468,7 @@ body {
     font-size: 2rem;
   }
 
-  .content {
+  .article__content {
     grid-template-columns: 1fr;
   }
 }
