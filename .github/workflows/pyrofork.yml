@@ -3,7 +3,7 @@ name: pyrofork
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 7 * * 4"
+    - cron: "3 8 * * 1"
 
 jobs:
   build:

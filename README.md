@@ -34,4 +34,4 @@
 - [grammers](https://github.com/Lonami)
 - [MTKruto](https://github.com/rojvv)
 - [mtcute](https://github.com/teidesu)
-- [WTelegramClient](https://github.com/wiz0u/WTelegramClient)
+- [WTelegramClient](https://github.com/wiz0u)

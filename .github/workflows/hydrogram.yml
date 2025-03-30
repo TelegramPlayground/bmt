@@ -3,7 +3,7 @@ name: hydrogram
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 2 * * 4"
+    - cron: "3 2 * * 1"
 
 jobs:
   build:

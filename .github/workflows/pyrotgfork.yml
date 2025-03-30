@@ -3,7 +3,7 @@ name: pyrotgfork
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 10 * * 4"
+    - cron: "3 11 * * 1"
 
 jobs:
   build:

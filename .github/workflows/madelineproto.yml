@@ -3,7 +3,7 @@ name: madelineproto
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 4 * * 4"
+    - cron: "3 4 * * 1"
 
 jobs:
   build:

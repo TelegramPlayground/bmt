@@ -3,7 +3,7 @@ name: telethon
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 12 * * 4"
+    - cron: "3 13 * * 1"
 
 jobs:
   build:

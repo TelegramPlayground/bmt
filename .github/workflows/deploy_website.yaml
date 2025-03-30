@@ -27,7 +27,7 @@ jobs:
         run: |
           cd www
           deno add jsr:@minify-html/deno
-          deno --allow-net --allow-write runner.ts
+          deno --allow-net --allow-read --allow-write runner.ts
           rm deno.json deno.lock runner.ts
           cd ..
 

@@ -3,7 +3,7 @@ name: wtelegramclient
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 2 * * 4"
+    - cron: "3 14 * * 1"
 
 jobs:
   build:
@@ -20,9 +20,9 @@ jobs:
 
       - name: Run script
         env:
-          API_ID: ${{ secrets.APP_ID }}
-          API_HASH: ${{ secrets.API_HASH }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          api_id: ${{ secrets.APP_ID }}
+          api_hash: ${{ secrets.API_HASH }}
+          bot_token: ${{ secrets.BOT_TOKEN }}
           # TG_SESSION: ${{ secrets.TG_SESSION }}
           # FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
           MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}

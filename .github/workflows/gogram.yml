@@ -3,7 +3,7 @@ name: gogram
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 0 * * 4"
+    - cron: "3 0 * * 1"
 
 jobs:
   build:
