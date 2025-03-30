@@ -1,0 +1,38 @@
+name: wtelegramclient
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 2 * * 4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository contents
+        uses: actions/checkout@v4
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      - name: Run script
+        env:
+          API_ID: ${{ secrets.APP_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          # TG_SESSION: ${{ secrets.TG_SESSION }}
+          # FLOOD_WAIT_SLEEP_TIME: ${{ secrets.FLOOD_WAIT_SLEEP_TIME }}
+          MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+        run: |
+          echo "Beginning WTelegramClient test"
+          mkdir -p out
+          cd src/wtelegramclient
+          dotnet run src/wtelegramclient
+          cd ../..
+
+      - name: Commit and push changes
+        run: |
+          LIBRARY="WTelegramClient" ./.github/_commit.sh
