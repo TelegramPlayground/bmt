@@ -92,6 +92,12 @@ const libs: Array<Library> = [
     display: "mtcute",
     language: "typescript",
   },
+  {
+    name: "wtelegramclient",
+    repo: "https://github.com/mtcute/mtcute",
+    display: "WTelegramClient",
+    language: "C#",
+  },
 ];
 
 interface ActionData {
