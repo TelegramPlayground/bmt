@@ -3,8 +3,8 @@ import logging
 import os
 from datetime import datetime
 from json import dumps
-from pyrogram import Client, __version__
-from pyrogram.raw.all import layer
+from hydrogram import Client, __version__
+from hydrogram.raw.all import layer
 
 
 logging.basicConfig(
