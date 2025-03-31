@@ -96,7 +96,7 @@ const libs: Array<Library> = [
     name: "wtelegramclient",
     repo: "https://github.com/mtcute/mtcute",
     display: "WTelegramClient",
-    language: "C#",
+    language: "c-sharp",
   },
 ];
 
