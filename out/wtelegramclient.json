@@ -1,0 +1,17 @@
+{
+  "version": "4.3.2",
+  "layer": 200,
+  "file_size": 2097152000,
+  "download": {
+    "start_time": 1743387136.468,
+    "end_time": 1743387254.14,
+    "time_taken": 117.6715316,
+    "avg_speed": "17.00 MB/s"
+  },
+  "upload": {
+    "start_time": 1743387254.14,
+    "end_time": 1743387554.394,
+    "time_taken": 300.2543018,
+    "avg_speed": "6.66 MB/s"
+  }
+}
