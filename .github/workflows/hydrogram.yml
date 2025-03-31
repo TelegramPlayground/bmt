@@ -32,6 +32,7 @@ jobs:
           pip install --no-cache-dir --force-reinstall --upgrade Hydrogram TgCrypto==1.2.5 > /dev/null 2>&1
           sed -i s/pyrogram/hydrogram/g src/pyrogram/main.py
           P=$(python src/pyrogram/main.py)
+          sed -i s/hydrogram/pyrogram/g src/pyrogram/main.py
           pip uninstall -y hydrogram tgcrypto > /dev/null 2>&1
           echo "${P}" > out/hydrogram.json
 
