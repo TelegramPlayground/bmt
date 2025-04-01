@@ -94,7 +94,7 @@ const libs: Array<Library> = [
   },
   {
     name: "wtelegramclient",
-    repo: "https://github.com/mtcute/mtcute",
+    repo: "https://github.com/wiz0u/WTelegramClient",
     display: "WTelegramClient",
     language: "c-sharp",
   },
