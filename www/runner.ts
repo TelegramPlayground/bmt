@@ -169,57 +169,225 @@ function calculateScore(data: ActionData) {
   return (downloadSpeed + uploadSpeed) / 2;
 }
 
-function createClientCard(data: ActionData, lib: Library, index: number, position: number) {
+function createClientCard(data: ActionData, lib: Library, index: number, position: number, v2: boolean) {
   const downloadSpeed = formatSpeed(data.file_size, data.download.time_taken);
   const uploadSpeed = formatSpeed(data.file_size, data.upload.time_taken);
-  const positionBadge = `<div class="position-badge">#${position}</div>`;
 
-  let clientMeta = `<div class="client-meta">v${data.version} • Layer ${data.layer}</div>`;
-  if (lib.name === "pytdbot") {
-    clientMeta = `<div class="client-meta">v${data.version} • TDLib ${data.layer}</div>`;
-  }
-  else if (lib.name === "gogram") {
-    clientMeta = `<div class="client-meta">${data.version} • Layer ${data.layer}</div>`;
-  }
+  if (v2) {
+    let clientMeta = `v${data.version} • Layer ${data.layer}`;
+    if (lib.name === "pytdbot") {
+      clientMeta = `v${data.version} • TDLib ${data.layer}`;
+    }
+    else if (lib.name === "gogram") {
+      clientMeta = `${data.version} • Layer ${data.layer}`;
+    }
 
-  return `<br style="display:none;"/>
-  <div class="card" style="animation-delay: ${index * 0.1}s">
-  ${positionBadge}
-  <div class="card-header">
-  <i class="ti ti-brand-${lib.language}"></i>
-  <div class="client-info">
-    <div class="client-title">
-      <h3>${lib.display}</h3>
-      <a href="${lib.repo}" target="_blank" class="github-link" title="View on GitHub">
-        <i class="ti ti-brand-github"></i>
-        <p style="display:none;">&nbsp; View on GitHub &nbsp; </p>
-      </a>
+    return `<tr>
+      <td>#${position}</td>
+      <td>${lib.display}</td>
+      <td>${downloadSpeed}</td>
+      <td>${uploadSpeed}</td>
+      <td>${clientMeta}</td>
+      <td>
+        <a href="${lib.repo}">
+          <i class="ti ti-brand-github"></i>
+          <p style="display:none;">View on GitHub</p>
+        </a>
+      </td>
+    </tr>`;
+  }
+  else {
+    const positionBadge = `<div class="position-badge">#${position}</div>`;
+
+    let clientMeta = `<div class="client-meta">v${data.version} • Layer ${data.layer}</div>`;
+    if (lib.name === "pytdbot") {
+      clientMeta = `<div class="client-meta">v${data.version} • TDLib ${data.layer}</div>`;
+    }
+    else if (lib.name === "gogram") {
+      clientMeta = `<div class="client-meta">${data.version} • Layer ${data.layer}</div>`;
+    }
+
+    return `<br style="display:none;"/>
+    <div class="card" style="animation-delay: ${index * 0.1}s">
+    ${positionBadge}
+    <div class="card-header">
+    <i class="ti ti-brand-${lib.language}"></i>
+    <div class="client-info">
+      <div class="client-title">
+        <h3>${lib.display}</h3>
+        <a href="${lib.repo}" target="_blank" class="github-link" title="View on GitHub">
+          <i class="ti ti-brand-github"></i>
+          <p style="display:none;">&nbsp; View on GitHub &nbsp; </p>
+        </a>
+      </div>
+      ${clientMeta}
     </div>
-    ${clientMeta}
-  </div>
-  </div>
-  <div class="stats">
-  <div class="stat stat-download">
-    <p style="display:none;"> &nbsp; </p>
-    <div class="stat-header">
-      <i class="ti ti-download"></i>
-      <span>Download</span>
     </div>
-    <span class="stat-value">&nbsp; ${downloadSpeed}</span>
-    <p style="display:none;"> &nbsp; </p>
-  </div>
-  <div class="stat stat-upload">
-    <p style="display:none;"> &nbsp; </p>
-    <div class="stat-header">
-      <i class="ti ti-upload"></i>
-      <span>Upload</span>
+    <div class="stats">
+    <div class="stat stat-download">
+      <p style="display:none;"> &nbsp; </p>
+      <div class="stat-header">
+        <i class="ti ti-download"></i>
+        <span>Download</span>
+      </div>
+      <span class="stat-value">&nbsp; ${downloadSpeed}</span>
+      <p style="display:none;"> &nbsp; </p>
     </div>
-    <span class="stat-value">&nbsp; ${uploadSpeed}</span>
-    <p style="display:none;"> &nbsp; </p>
-  </div>
-  </div>
-  </div>
-  `;
+    <div class="stat stat-upload">
+      <p style="display:none;"> &nbsp; </p>
+      <div class="stat-header">
+        <i class="ti ti-upload"></i>
+        <span>Upload</span>
+      </div>
+      <span class="stat-value">&nbsp; ${uploadSpeed}</span>
+      <p style="display:none;"> &nbsp; </p>
+    </div>
+    </div>
+    </div>
+    `;
+  }
+}
+
+function createReqdHatml(
+  v2: boolean,
+  DateStamp: string,
+  innerCards: string,
+) {
+  let uh: string = "";
+  if (v2) {
+    uh = `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta http-equiv="refresh" content="0; url=./AmarnathCJD.html">
+        <title>Telegram Clients Down/Up Load Benchmark</title>
+        <!-- if each site makes their own METAs, then ...?-->
+        <!-- OpenGraph-->
+        <meta property="og:title" content="Telegram Clients Speed Test" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="Compare Down / Up Load metrics across different Telegram Client libraries" />
+    
+        <!--site_verification property must be present, but could be empty (no IVBot-side verification for now?)-->
+        <meta property="tg:site_verification" content="g7j8/rPFXfhyrq5q0QQV7EsYWv4=" />
+        <!--published_time property must be present, but you could leave content empty if no $published_date is wanted-->
+        <meta property="article:published_time" content="" />
+        <meta property="article:author" content="@DownLoadPlayGround" />
+        <meta property="telegram:channel" content="@DownLoadPlayGround" />
+    </head>
+    
+    <body>
+        <div class="article">
+            <article class="article__content">
+                <p style="display:none;">
+                    Compare Down <i class="ti ti-download"></i> / Up <i class="ti ti-upload"></i> Load metrics across different Telegram Client libraries
+                </p>
+                <table width="100%" border="0" cellpadding="1" cellspacing="2" style="border:1px solid Navy">
+                  <tr>
+                    <td></td>
+                    <td>Name</td>
+                    <td>Download Speed</td>
+                    <td>Upload Speed</td>
+                    <td>Version</td>
+                    <td>GitHub</td>
+                  </tr>
+                  ${innerCards}
+                </table>
+                <p style="display:none;">
+                    Data updated at ${DateStamp} • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a> • <a href="https://github.com/amarnathcjd">@AmarnathCJD</a>
+                </p>
+            </article>
+        </div>
+    </body>
+    
+    </html>`;
+  }
+  else {
+    uh = `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Telegram Clients Down/Up Load Benchmark</title>
+        <link href="//fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" type="text/css" />
+        <link href="//cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="./index.css" rel="stylesheet" type="text/css" />
+    </head>
+    
+    <body>
+        <div class="loading-screen">
+            <div class="loading-content">
+                <div class="loading-logo">
+                    <i class="ti ti-loader"></i>
+                </div>
+                <div class="loading-progress">
+                    <div class="loading-progress-bar"></div>
+                </div>
+                <div class="loading-text"></div>
+            </div>
+        </div>
+        <div class="stars"></div>
+        <div class="noise"></div>
+        <div class="article">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="ti ti-bolt"></i>
+                    <span>TGBench</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="ti ti-sun"></i>
+                </button>
+            </nav>
+            <header class="hero">
+                <h1>Telegram Clients <span>Speed Test</span></h1>
+                <p>
+                    Compare Down <i class="ti ti-download"></i> / Up <i class="ti ti-upload"></i> Load metrics across different Telegram Client libraries
+                </p>
+            </header>
+            <article id="app" class="article__content">
+                <p style="display:none;">
+                    Compare Down <i class="ti ti-download"></i> / Up <i class="ti ti-upload"></i> Load metrics across different Telegram Client libraries
+                </p>
+                ${innerCards}
+                <p style="display:none;">
+                    Data updated at ${DateStamp} • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a> • <a href="https://github.com/amarnathcjd">@AmarnathCJD</a>
+                </p>
+            </article>
+            <footer class="footer">
+                <b>
+                    <p>
+                        Data updated at ${DateStamp} • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a> • <a href="https://github.com/amarnathcjd">@AmarnathCJD</a>
+                    </p>
+                </b>
+            </footer>
+        </div>
+        <script type="text/javascript" src="./index.js"></script>
+    </body>
+    
+    </html>`;
+  }
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+
+  const minified = decoder.decode(
+    minify(
+      encoder.encode(uh),
+      {
+        keep_spaces_between_attributes: true,
+        keep_comments: true,
+        keep_closing_tags: true,
+      }
+    )
+  );
+  return minified;
 }
 
 async function fetchClientData() {
@@ -248,103 +416,31 @@ async function fetchClientData() {
       }))
       .sort((a, b) => b.score - a.score);
 
-    const TemplateHTMLOut = sortedResults
+    const TemplateHTMLOut1 = sortedResults
       .map(({ lib, data }, index) =>
-        createClientCard(data, lib, index, index + 1)
+        createClientCard(data, lib, index, index + 1, false)
       )
       .join("");
-    const hop = `Compare Down <i class="ti ti-download"></i> / Up <i class="ti ti-upload"></i> Load metrics across different Telegram Client libraries`;
-    const luo = `Data updated at ${new Date().toString()} • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a> • <a href="https://github.com/amarnathcjd">@AmarnathCJD</a>`;
-    const misc = [
-      `<!DOCTYPE html>`,
-      `<html lang="en">`,
-      `<head>`,
-      `<meta charset="UTF-8" />
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
-            <meta name="apple-mobile-web-app-capable" content="yes" />`,
-      `<title>Telegram Clients Down/Up Load Benchmark</title>`,
-      `<link
-            href="//fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-            type="text/css"
-          />
-          <link
-            href="//cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"
-            rel="stylesheet"
-            type="text/css"
-          />
-          <link href="./index.css" rel="stylesheet" type="text/css" />`,
-      `<!-- if each site makes their own METAs, then ...?-->
-          <!-- OpenGraph-->
-          <meta property="og:title" content="Telegram Clients Speed Test" />
-          <meta property="og:type" content="article" />
-          <meta property="og:description" content="Compare Down / Up Load metrics across different Telegram Client libraries" />
-      
-          <!--site_verification property must be present, but could be empty (no IVBot-side verification for now?)-->
-          <meta property="tg:site_verification" content="g7j8/rPFXfhyrq5q0QQV7EsYWv4=" />
-          <!--published_time property must be present, but you could leave content empty if no $published_date is wanted-->
-          <meta property="article:published_time" content="" />
-          <meta property="article:author" content="https://t.me/DownLoadPlayGround/802" />
-          <meta property="telegram:channel" content="@DownLoadPlayGround" />`,
-      `</head>`,
-      `<body>`,
-      `<div class="loading-screen">
-          <div class="loading-content">
-            <div class="loading-logo">
-              <i class="ti ti-loader"></i>
-            </div>
-            <div class="loading-progress">
-              <div class="loading-progress-bar"></div>
-            </div>
-            <div class="loading-text"></div>
-          </div>
-        </div>`,
-      `<div class="stars"></div>`,
-      `<div class="noise"></div>`,
-      `<div class="article">`,
-      `<nav class="navbar">
-            <div class="logo">
-              <i class="ti ti-bolt"></i>
-              <span>TGBench</span>
-            </div>
-            <button class="theme-toggle" id="themeToggle">
-              <i class="ti ti-sun"></i>
-            </button>
-          </nav>`,
-      `<header class="hero">
-            <h1>Telegram Clients <span>Speed Test</span></h1>`,
-      `<p>`,
-      hop,
-      `</p>`,
-      `</header>`,
-      `<article id="app" class="article__content">`,
-      `<p style="display:none;">`,
-      hop,
-      `</p>`,
-      TemplateHTMLOut,
-      `<p style="display:none;">`,
-      luo,
-      `</p>`,
-      `</article>`,
-      `<footer class="footer">`,
-      `<b><p>`,
-      luo,
-      `</p></b>`,
-      `</footer>`,
-      `</div>`,
-      `<script type="text/javascript" src="./index.js"></script>`,
-      `</body>`,
-      `</html>`,
-    ];
-    const output = misc.join("\n");
+    const TemplateHTMLOut2 = sortedResults
+      .map(({ lib, data }, index) =>
+        createClientCard(data, lib, index, index + 1, true)
+      )
+      .join("");
 
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
+    const updatedDateStamp = new Date().toString();
 
-    const minified = decoder.decode(minify(encoder.encode(output), { keep_spaces_between_attributes: true, keep_comments: true }));
-    Deno.writeTextFileSync("./index.html", minified);
+    const legacy = createReqdHatml(
+      false,
+      updatedDateStamp,
+      TemplateHTMLOut1
+    );
+    Deno.writeTextFileSync("./AmarnathCJD.html", legacy);
+    const instantview = createReqdHatml(
+      true,
+      updatedDateStamp,
+      TemplateHTMLOut2
+    );
+    Deno.writeTextFileSync("./index.html", instantview);
   }
   else {
     console.error("Failed to load benchmark data. Please try again later.");
