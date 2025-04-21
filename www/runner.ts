@@ -297,10 +297,10 @@ function createReqdHatml(
                   </tr>
                   ${innerCards}
                 </table>
-                <p>
+                <!--p>
                   Each library was given a 2 GB file to download, present in a active public Telegram Chat, and then re-upload to the same public chat.
                   All benchmarks were run inside GitHub hosted-runners.
-                </p>
+                </p-->
                 <p style="display:none;">
                     Data updated at ${DateStamp} • <a href="https://github.com/TelegramPlayGround/bmt">View Source</a>
                 </p>
