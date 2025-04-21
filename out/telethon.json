@@ -1,15 +1,15 @@
 {
-  "version": "1.39.0",
-  "layer": 199,
-  "file_size": 2097152000,
+  "version": "1.40.0",
+  "layer": 201,
+  "file_size": 104857600,
   "download": {
-    "start_time": 1744637717.041608,
-    "end_time": 1744638170.607128,
-    "time_taken": 453
+    "start_time": 1745242400.434523,
+    "end_time": 1745242495.050004,
+    "time_taken": 94
   },
   "upload": {
-    "start_time": 1744638170.607136,
-    "end_time": 1744638894.616001,
-    "time_taken": 724
+    "start_time": 1745242495.050012,
+    "end_time": 1745242636.205624,
+    "time_taken": 141
   }
 }
