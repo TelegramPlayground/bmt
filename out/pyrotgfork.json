@@ -1,15 +1,15 @@
 {
   "version": "2.2.10",
   "layer": 201,
-  "file_size": 2097152000,
+  "file_size": 104857600,
   "download": {
-    "start_time": 1744629495.195869,
-    "end_time": 1744629653.247059,
-    "time_taken": 158
+    "start_time": 1745234286.853491,
+    "end_time": 1745234298.8801,
+    "time_taken": 12
   },
   "upload": {
-    "start_time": 1744629653.247067,
-    "end_time": 1744629829.713346,
-    "time_taken": 176
+    "start_time": 1745234298.880107,
+    "end_time": 1745234306.876466,
+    "time_taken": 7
   }
 }
