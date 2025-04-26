@@ -134,13 +134,6 @@ $filePath = $fileMI["file"];
 unset($fileMI["file"]);
 $uploadMI = uploadFile($api, $chatId, $filePath);
 
-// Throw away first run, used to prime caches & set up connections
-
-$fileMI = downloadFile($api, $chatId, $messageId);
-$filePath = $fileMI["file"];
-unset($fileMI["file"]);
-$uploadMI = uploadFile($api, $chatId, $filePath);
-
 $j = [
     "version" => \danog\MadelineProto\API::RELEASE,
     "layer" => $settings->getSchema()->getLayer(),

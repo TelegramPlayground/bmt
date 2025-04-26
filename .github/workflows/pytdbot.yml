@@ -3,7 +3,7 @@ name: pytdbot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 12 * * 1"
+    - cron: "0 16 * * 1"
 
 jobs:
   build:

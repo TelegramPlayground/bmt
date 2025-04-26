@@ -3,7 +3,7 @@ name: kurigram
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 3 * * 1"
+    - cron: "0 16 * * 4"
 
 jobs:
   build:

@@ -3,7 +3,7 @@ name: wtelegramclient
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 14 * * 1"
+    - cron: "0 0 * * 1"
 
 jobs:
   build:

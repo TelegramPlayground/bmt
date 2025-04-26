@@ -3,7 +3,7 @@ name: pyrogram
 on:
   workflow_dispatch:
   schedule:
-    - cron: "3 9 * * 1"
+    - cron: "0 16 * * 2"
 
 jobs:
   build:
