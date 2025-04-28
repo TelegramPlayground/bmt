@@ -3,13 +3,13 @@
   "layer": "1.8.46",
   "file_size": 2097152000,
   "download": {
-    "start_time": 1744635178.354144,
-    "end_time": 1744635290.256856,
-    "time_taken": 111
+    "start_time": 1745857497.883392,
+    "end_time": 1745857659.712474,
+    "time_taken": 161
   },
   "upload": {
-    "start_time": 1744635290.256866,
-    "end_time": 1744635405.617144,
-    "time_taken": 115
+    "start_time": 1745857659.712484,
+    "end_time": 1745857780.951049,
+    "time_taken": 121
   }
 }
