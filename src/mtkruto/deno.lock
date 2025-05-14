@@ -9,7 +9,7 @@
     "jsr:@std/bytes@^1.0.5": "1.0.5",
     "jsr:@std/datetime@0.225.4": "0.225.4",
     "jsr:@std/encoding@1.0.7": "1.0.7",
-    "jsr:@std/internal@^1.0.6": "1.0.6",
+    "jsr:@std/internal@^1.0.6": "1.0.7",
     "jsr:@std/io@0.225.2": "0.225.2",
     "jsr:@std/media-types@1.1.0": "1.1.0",
     "jsr:@std/path@1.0.9": "1.0.9",
@@ -54,8 +54,8 @@
     "@std/encoding@1.0.7": {
       "integrity": "f631247c1698fef289f2de9e2a33d571e46133b38d042905e3eac3715030a82d"
     },
-    "@std/internal@1.0.6": {
-      "integrity": "9533b128f230f73bd209408bb07a4b12f8d4255ab2a4d22a1fd6d87304aca9a4"
+    "@std/internal@1.0.7": {
+      "integrity": "39eeb5265190a7bc5d5591c9ff019490bd1f2c3907c044a11b0d545796158a0f"
     },
     "@std/io@0.225.2": {
       "integrity": "3c740cd4ee4c082e6cfc86458f47e2ab7cb353dc6234d5e9b1f91a2de5f4d6c7"
