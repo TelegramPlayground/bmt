@@ -2,10 +2,10 @@
   "type": "module",
   "dependencies": {
     "@mtcute/node": "^0.23.0",
-    "@mtcute/tl": "^201.0.0",
+    "@mtcute/tl": "^203.0.0",
     "envalid": "^8.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3"
+    "@types/node": "^22.15.18"
   }
 }
