@@ -1,7 +1,7 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@mtkruto/mtkruto@~0.63.16": "0.63.16",
+    "jsr:@mtkruto/mtkruto@~0.63.17": "0.63.17",
     "jsr:@roj/tgcrypto@1.0.1": "1.0.1",
     "jsr:@std/assert@1.0.13": "1.0.13",
     "jsr:@std/async@1.0.12": "1.0.12",
@@ -17,8 +17,8 @@
     "npm:htmlparser2@10.0.0": "10.0.0"
   },
   "jsr": {
-    "@mtkruto/mtkruto@0.63.16": {
-      "integrity": "ff54d5aa65e84bf57e6716c1dfac995693de592339bce23d68656e220595ec7d",
+    "@mtkruto/mtkruto@0.63.17": {
+      "integrity": "615b998cccc785d72978c1480f5e2443bfd0e01df4f4f7e89bfc3dc5e1fd2ac7",
       "dependencies": [
         "jsr:@roj/tgcrypto",
         "jsr:@std/assert",
@@ -117,7 +117,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@mtkruto/mtkruto@~0.63.16"
+      "jsr:@mtkruto/mtkruto@~0.63.17"
     ]
   }
 }
