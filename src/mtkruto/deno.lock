@@ -1,7 +1,7 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@mtkruto/mtkruto@~0.63.17": "0.63.17",
+    "jsr:@mtkruto/mtkruto@0.64": "0.64.0",
     "jsr:@roj/tgcrypto@1.0.1": "1.0.1",
     "jsr:@std/assert@1.0.13": "1.0.13",
     "jsr:@std/async@1.0.12": "1.0.12",
@@ -9,7 +9,7 @@
     "jsr:@std/bytes@^1.0.5": "1.0.5",
     "jsr:@std/datetime@0.225.4": "0.225.4",
     "jsr:@std/encoding@1.0.7": "1.0.7",
-    "jsr:@std/internal@^1.0.6": "1.0.7",
+    "jsr:@std/internal@^1.0.6": "1.0.8",
     "jsr:@std/io@0.225.2": "0.225.2",
     "jsr:@std/media-types@1.1.0": "1.1.0",
     "jsr:@std/path@1.0.9": "1.0.9",
@@ -17,8 +17,8 @@
     "npm:htmlparser2@10.0.0": "10.0.0"
   },
   "jsr": {
-    "@mtkruto/mtkruto@0.63.17": {
-      "integrity": "615b998cccc785d72978c1480f5e2443bfd0e01df4f4f7e89bfc3dc5e1fd2ac7",
+    "@mtkruto/mtkruto@0.64.0": {
+      "integrity": "82d8b8d47e4ee7596ab4c99ca96f005e882704aa09ccf23eb2975614774cd6ba",
       "dependencies": [
         "jsr:@roj/tgcrypto",
         "jsr:@std/assert",
@@ -54,8 +54,8 @@
     "@std/encoding@1.0.7": {
       "integrity": "f631247c1698fef289f2de9e2a33d571e46133b38d042905e3eac3715030a82d"
     },
-    "@std/internal@1.0.7": {
-      "integrity": "39eeb5265190a7bc5d5591c9ff019490bd1f2c3907c044a11b0d545796158a0f"
+    "@std/internal@1.0.8": {
+      "integrity": "fc66e846d8d38a47cffd274d80d2ca3f0de71040f855783724bb6b87f60891f5"
     },
     "@std/io@0.225.2": {
       "integrity": "3c740cd4ee4c082e6cfc86458f47e2ab7cb353dc6234d5e9b1f91a2de5f4d6c7"
@@ -117,7 +117,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@mtkruto/mtkruto@~0.63.17"
+      "jsr:@mtkruto/mtkruto@0.64"
     ]
   }
 }
