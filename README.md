@@ -24,6 +24,17 @@
 
 ![](https://is.gd/IkAgCs)
 
+## Abandoned
+
+The account which had created the bot used for the upload process was banned by Telegram without any notification or justification.
+
+![](./banned_bot.png)
+
+I came to know of the ban only upon checking the actions logs.
+
+![](./failed_github_actions.jpg)
+
+
 ## Credits
 
 - [GoGram](https://github.com/AmarnathCJD)
